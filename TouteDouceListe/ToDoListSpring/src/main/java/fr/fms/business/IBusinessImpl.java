@@ -48,4 +48,14 @@ public class IBusinessImpl implements IBusiness {
 	public void saveCategory(Category category) {
 		categoryRepository.save(category);		
 	}
+
+	@Override
+	public void deleteTask(Long id) {
+		taskRepository.deleteById(id);		
+	}
+	
+	@Override
+	public void deleteCategory(Long id) {
+		categoryRepository.deleteById(id);		
+	}
 }

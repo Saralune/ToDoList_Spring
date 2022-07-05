@@ -74,7 +74,9 @@
 							class="btn btn-outline-success w-100 me-2" th:text="${c.name}">Bouton
 							Catégorie</button>
 							
-						<i class="bi bi-trash me-2"></i> 
+						<a class="" th:href="@{/deleteCategory(id=${c.id}, page=${currentPage}, keyword=${keyword})}">
+							<i class="bi bi-trash me-2"></i> 
+						</a>
 						
 						<i class="bi bi-pencil-square"></i>
 					</div>
@@ -120,7 +122,10 @@
 								</p>
 							</div>
 
-							<i class="bi bi-trash me-2"></i> 
+							<a class="" th:href="@{/deleteTask(id=${a.id}, page=${currentPage}, keyword=${keyword})}">
+								<i class="bi bi-trash me-2"></i>
+							</a> 
+							
 							<i class="bi bi-pencil-square"></i>
 						</div>
 					</div>

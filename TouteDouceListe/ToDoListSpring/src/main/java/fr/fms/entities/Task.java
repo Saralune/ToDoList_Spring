@@ -31,7 +31,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@SQLDelete(sql = "UPDATE article SET deleted = true WHERE id=?")
+@SQLDelete(sql = "UPDATE task SET deleted = true WHERE id=?")
 @Where(clause = "deleted=false")
 public class Task {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)

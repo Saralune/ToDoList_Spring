@@ -73,12 +73,19 @@ public class TaskController {
 	}
 	
 	@PostMapping("/saveTask")
-	public String saveTask(Model model, @Valid Task task) {
+	public String saveTask(Model model, @Valid Task task, int page, String keyword) {
 		List<Category> listCategories = business.findAllCategories();
 		
 		model.addAttribute("listCategories", listCategories);
 		business.saveTask(task);
 		
-		return "redirect:/tasks";
+		return "redirect:/tasks?page=" + page + "&keyword=" + keyword;
+	}
+	
+	@GetMapping("/deleteTask")
+	public String deleteTask(Long id, int page, String keyword) {
+		business.deleteTask(id);
+
+		return "redirect:/tasks?page=" + page + "&keyword=" + keyword;
 	}
 }
