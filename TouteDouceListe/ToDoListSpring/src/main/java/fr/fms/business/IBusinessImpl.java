@@ -39,4 +39,13 @@ public class IBusinessImpl implements IBusiness {
 		return categoryRepository.findAll();
 	}
 
+	@Override
+	public void saveTask(Task task) {
+		taskRepository.save(task);
+	}
+
+	@Override
+	public void saveCategory(Category category) {
+		categoryRepository.save(category);		
+	}
 }

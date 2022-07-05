@@ -1,4 +1,24 @@
+/*Variables CSS*/
+:root {
+	--pastelYellow: #fefae8;
+  	--pastelOrange: #f7e7de;
+  	--pastelPinkOrange: #f4dae2;
+  	--pastelPink: #edcee5;
+  	--pastelPurple: #dec3e1;
+  	--pastelBlue: #bbd5f2;
+ 	--pastelLightBlue: #d4e0f9;
+}
+
 /*Navbar*/
 .bg-pastel{
-    background-color: #fefae8;   
+    background-color: var(--pastelYellow);   
+}
+
+/**/
+input:checked + p{
+	text-decoration: line-through;
+	opacity: 0.5;
+}
+input:checked[none-if-checked]{
+	display : none;
 }

@@ -6,6 +6,7 @@ package fr.fms.web;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -59,7 +60,7 @@ public class TaskController {
 	@GetMapping("tasks")
 	public String tasks(Model model, @RequestParam(name = "page", defaultValue = "0") int page,
 			@RequestParam(name = "keyword", defaultValue = "") String kw) {
-		Page<Task> listTasks = business.readByDescriptionContains(kw, page, 10);
+		Page<Task> listTasks = business.readByDescriptionContains(kw, page, 5);
 		List<Category> listCategories = business.findAllCategories();
 		
 		model.addAttribute("listCategories", listCategories);
@@ -71,11 +72,13 @@ public class TaskController {
 		return "tasks";
 	}
 	
-	@PostMapping("/addTask")
-	public String addTask(Model model) {
+	@PostMapping("/saveTask")
+	public String saveTask(Model model, @Valid Task task) {
 		List<Category> listCategories = business.findAllCategories();
 		
 		model.addAttribute("listCategories", listCategories);
-		return "tasks";
+		business.saveTask(task);
+		
+		return "redirect:/tasks";
 	}
 }

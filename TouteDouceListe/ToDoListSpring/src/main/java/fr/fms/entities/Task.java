@@ -4,7 +4,6 @@
 package fr.fms.entities;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -50,7 +49,7 @@ public class Task {
 	@Size(min = 2, max = 100, message = "La taille doit être comprise entre 2 et 100 caractères.")
 	private String description;
 	
-	//TODO FAIRE UNE CLASSE STATUT
+	//TODO FAIRE UNE CLASSE STATUT ??
 //	@ManyToOne
 //	private String status;
 	
