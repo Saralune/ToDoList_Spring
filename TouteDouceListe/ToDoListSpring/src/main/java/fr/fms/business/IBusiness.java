@@ -18,9 +18,14 @@ public interface IBusiness {
 	public Page<Task> readByDescriptionContains(String keyword, int page, int tasksByPage);
 	public List<Category> findAllCategories();
 	
-	public void saveTask(Task task);
-	public void saveCategory(Category category);
+	public void saveOrUpdateTask(Task task);
+	public void saveOrUpdateCategory(Category category);
 	
-	public void deleteTask(Long id);
-	public void deleteCategory(Long id);
+	public void deleteTask(Long id) throws Exception;
+	public void deleteCategory(Long id) throws Exception;
+	
+	public Task readTasksById(Long id);
+	
+	public Category readCategoryById(Long id);
+	public Page<Task> readTasksByCategory(Long id, int page, int tasksByPage) throws Exception ;
 }

@@ -32,7 +32,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @SQLDelete(sql = "UPDATE task SET deleted = true WHERE id=?")
-@Where(clause = "deleted=false")
+@Where(clause = "deleted = false")
 public class Task {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -59,4 +59,7 @@ public class Task {
 	
 	@ManyToOne
 	private Category category;
+	
+	@ManyToOne
+	private Users users;
 }

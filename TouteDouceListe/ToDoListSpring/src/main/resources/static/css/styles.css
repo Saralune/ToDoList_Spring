@@ -22,3 +22,45 @@ input:checked + p{
 input:checked[none-if-checked]{
 	display : none;
 }
+
+.btn-custom-none{
+	border: none;
+	background: none;
+}
+
+.btn-custom{
+	border: var(--pastelBlue) solid 2px !important;
+    color: var(--pastelBlue) !important;
+}
+
+i{
+	font-size: 25px;
+}
+
+.pastelOrange{
+	color: var(--pastelOrange);
+}
+
+.pastelYellow{
+	color: var(--pastelYellow);
+}
+
+.pastelPinkOrange{
+	color: var(--pastelPinkOrange);
+}
+
+.pastelPink{
+	color: var(--pastelPink);
+}
+
+.pastelPurple{
+	color: var(--pastelPurple);
+}
+
+.pastelBlue{
+	color: var(--pastelBlue);
+}
+
+.pastelLightBlue{
+	color: var(--pastelLightBlue);
+}

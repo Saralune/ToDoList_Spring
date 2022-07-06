@@ -5,6 +5,10 @@ package fr.fms.business;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.hibernate.Filter;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -28,9 +32,12 @@ public class IBusinessImpl implements IBusiness {
 	
 	@Autowired
 	CategoryRepository categoryRepository;
+	
+	@Autowired
+	EntityManager entityManager;
 
 	@Override
-	public Page<Task> readByDescriptionContains(String keyword, int page, int tasksByPage) {
+	public Page<Task> readByDescriptionContains(String keyword, int page, int tasksByPage) {       
 		return taskRepository.findByDescriptionContains(keyword, PageRequest.of(page, tasksByPage));
 	}
 
@@ -40,22 +47,38 @@ public class IBusinessImpl implements IBusiness {
 	}
 
 	@Override
-	public void saveTask(Task task) {
+	public void saveOrUpdateTask(Task task) {
 		taskRepository.save(task);
 	}
 
 	@Override
-	public void saveCategory(Category category) {
+	public void saveOrUpdateCategory(Category category) {
 		categoryRepository.save(category);		
 	}
 
 	@Override
-	public void deleteTask(Long id) {
+	public void deleteTask(Long id) throws Exception {
 		taskRepository.deleteById(id);		
 	}
 	
 	@Override
-	public void deleteCategory(Long id) {
+	public void deleteCategory(Long id) throws Exception {
 		categoryRepository.deleteById(id);		
 	}
+
+	@Override
+	public Page<Task> readTasksByCategory(Long id, int page, int tasksByPage) throws Exception {
+		return taskRepository.findByCategoryId(id, PageRequest.of(page, tasksByPage));
+	}
+
+	@Override
+	public Category readCategoryById(Long id) {
+		return categoryRepository.findById(id).get();
+	}
+
+	@Override
+	public Task readTasksById(Long id) {
+		return taskRepository.findById(id).get();
+	}
+
 }

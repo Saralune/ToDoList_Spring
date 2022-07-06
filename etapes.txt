@@ -4,4 +4,32 @@
 - dépendances : pom.xml
 - css + ajout des liens dans les fichiers
 - création des packages et des fichiers
-- 
+- compléter les entités
+- script sql avec roles et users encryptés
+- connexion
+- protéger les routes
+- ajouter role
+- déconnexion
+- update catégorie
+- update tache
+- delete tache
+- refaire la page "editTasks" avec des inputs au lieu des button ou taches
+
+
+A FAIRE JEUDI :
+- afficher les taches par catégorie
+- condition si je supprime une catégorie reliée à une tache + AFFICHAGE DES TACHES ET DES CATEGORIES
+- relier catégorie au user
+- page démo
+- tests unitaires
+- valider en base de données quand input checked
+- Exceptions
+- Javadoc
+
+BONUS :
+- Couleur par catégorie
+- jolie pagination
+- bouton pour cacher les taches finies
+
+//
+- Mettre la date en rouge quand finie

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{index.html}">
 
@@ -13,7 +13,7 @@
 <body>
 	<div layout:fragment="content">
 
-  <!-- Nav -->
+  Nav
   <nav class="navbar sticky-top bg-pastel navbar-expand-sm">
     <div class="container-fluid">
 
@@ -39,18 +39,18 @@
 
   <div class="container">
 
-    <!-- Search + add -->
+    Search + add
     <div class="row mt-3 mb-5 d-flex flex-md-row flex-sm-column justify-content-md-between align-items-sm-center">
-      <!-- Search -->
+      Search
       <form class="d-flex col-4" role="search" th:action="@{/tasks}" method="get">
         <input class="form-control me-2" type="search"  th:value="${keyword}" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit"><i class="bi bi-search-heart"></i></button>
       </form>
 
-      <!-- Add -->
+      Add
       <form class="d-flex col-8" th:action="@{/addTask}" method="post"  th:object="${task}">
         <input type="text" class="form-control me-2" name="description" th:value="${task.description}" required>
-		<!-- <span th:errors="${article.description}"></span> -->
+		<span th:errors="${article.description}"></span>
 
         <select class="form-select me-2 w-25" aria-label="Choose category" name="Category">
  
@@ -62,9 +62,9 @@
       </form>
     </div>
 
-    <!-- Cat + Taches -->
+    Cat + Taches
     <div class="row">
-      <!-- Categories -->
+      Categories
       <div class="d-flex flex-column col-4">
         <h5 class="mt-3">Liste des catégories</h5>
 
@@ -76,7 +76,7 @@
         <button type="button" class="btn btn-outline-primary mt-3">Ajouter catégorie</button>
 
       </div>
-      <!-- Taches -->
+      Taches
       <div class="col-8">
         <h5 class="mt-3">Liste des tâches</h5>
 
@@ -101,4 +101,4 @@
 	</div>
 </body>
 
-</html>
+</html> -->

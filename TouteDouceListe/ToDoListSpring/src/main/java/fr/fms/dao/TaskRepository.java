@@ -15,5 +15,6 @@ import fr.fms.entities.Task;
  */
 public interface TaskRepository  extends JpaRepository<Task, Long> {
 	Page<Task> findByDescriptionContains(String keyword, Pageable pageable);
+	Page<Task> findByDescriptionContainsAndDeletedFalse(String keyword, Pageable pageable);
 	Page<Task> findByCategoryId(Long categoryId, Pageable pageable);
 }
