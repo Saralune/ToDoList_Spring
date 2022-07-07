@@ -43,6 +43,9 @@ public class Users {
 	@OneToMany(mappedBy = "users")
 	private Collection<Task> task;
 	
+	@OneToMany(mappedBy = "users")
+	private Collection<Category> category;
+	
 	@NotNull
 	private Boolean active;
 

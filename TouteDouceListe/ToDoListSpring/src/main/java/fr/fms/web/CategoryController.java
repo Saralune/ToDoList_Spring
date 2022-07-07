@@ -3,12 +3,15 @@
  */
 package fr.fms.web;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,6 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import fr.fms.business.IBusinessImpl;
 import fr.fms.entities.Category;
 import fr.fms.entities.Task;
+import fr.fms.entities.Users;
 
 /**
  * @author Stagiaires10P
@@ -33,8 +37,16 @@ public class CategoryController {
 	private final Logger logger = LoggerFactory.getLogger(CategoryController.class);
 	
 	@PostMapping("/saveCategory")
-	public String saveCategory(Model model, @Valid Category category) {		
-		business.saveOrUpdateCategory(category);
+	public String saveCategory(Model model, @Valid Category category) {	
+		String mail = SecurityContextHolder.getContext().getAuthentication().getName();
+		try {
+			Users user = business.getUserByMail(mail);
+			category.setUsers(user);
+			
+			business.saveOrUpdateCategory(category);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		return "redirect:/editTasks";
 	}
@@ -48,12 +60,13 @@ public class CategoryController {
             return "editTasks";
         }
 		
-		Category cat = business.readCategoryById(id);
-
-		if(cat != null) {
-			business.saveOrUpdateCategory(category);
+		try {
+			Category cat = business.readCategoryById(id);
+			if(cat != null) business.saveOrUpdateCategory(category);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
+
 		return "redirect:/editTasks";
 	}
 	
@@ -73,58 +86,22 @@ public class CategoryController {
 		
 		return "redirect:/editTasks";
 	}
-	
-//    // affiche les articles par catégorie
-//    @GetMapping("/editTasksByCategory")
-//    public String editTasksByCategory(Model model, Task task, Category category,
-//            @RequestParam(name = "page", defaultValue = "0") int page,
-//            @RequestParam(name = "keyword", defaultValue = "1") Long id) {
-//
-//        Page<Task> tasksByCat;
-//		try {
-//			tasksByCat = business.readTasksByCategory(id, page, 5);
-//			
-//	        List<Category> categories = business.findAllCategories();
-//	        Category cat = business.readCategoryById(id);
-//	        
-//	        if (tasksByCat.isEmpty()) {
-//	            //throw new GlobalException("Aucune données");
-//	        }
-//
-//	        if (cat==null) {
-//	            //throw new GlobalException("Aucunes categories");
-//	        }
-//
-//	        model.addAttribute("listCategoryArticles", tasksByCat.getContent());
-//	        model.addAttribute("listCategories", categories);
-//	        model.addAttribute("pages", new int[tasksByCat.getTotalPages()]);
-//	        model.addAttribute("currentPage", page);
-//	        model.addAttribute("keyword", id);
-//	        model.addAttribute("categoryName", cat.getName());
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//        
-//        return "redirect:/editTasks?page=" + page + "&keyword=" + id;
-//    }
-    
-    @GetMapping("/readTasksByCategory")
-    public String readTasksByCategory(Model model, Task task, Category category,
-            @RequestParam(name = "page", defaultValue = "0") int page,
-            @RequestParam(name = "keyword", defaultValue = "1") Long id) {
+
+    // affiche les articles par catégorie
+    @GetMapping("/tasksByCategory")
+    public String tasksByCategory(Model model, Long id, int page) {
     	try {
+    		Category category = business.readCategoryById(id);
 			Page<Task> tasksByCat = business.readTasksByCategory(id, page, 5);
-			Category cat = business.readCategoryById(id);
 			
-			//if(cat.isDeleted()) 
-			
-			
+			model.addAttribute("listTasks", tasksByCat);
+		    //return "redirect:/readTasks?category=" + id;
+	        
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-        
-    	return "redirect:/editTasks?page=" + page + "&keyword=" + id;
+
+        return "redirect:/readTasks";
     }
+
 }

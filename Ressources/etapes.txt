@@ -1,5 +1,0 @@
-- dossier technique
-- new project starter sping boot
-- application.properties
-- dépendances : pom.xml
-- css + ajout des liens dans les fichiers

@@ -71,9 +71,6 @@
 
 					<div th:each="c:${listCategories}"
 						class="d-flex flex-row align-items-center mt-3">
-						<!-- <a class="btn btn-outline-success w-100 me-2" th:text="${c.name}"
-							th:ref="@{/editTasksByCategory(keyword=$(c.id}))}">Bouton
-							Catégorie</a> -->
 
 						<form th:action="@{/updateCategory(id=${c.id})}" method="post" th:object="${category}" class="d-flex flex-row w-100">
 							<div class="form-floating mb-3 w-100">
@@ -87,18 +84,14 @@
 							</button>
 						</form>
 
-						<a class="mb-3" onclick="return confirm('Etes vous sûr de vouloir supprimer cette catégroie ?')"  
+						<a class="mb-3" onclick="return confirm('Etes vous sûr de vouloir supprimer cette catégorie ?')"  
 							th:href="@{/deleteCategory(id=${c.id})}">
 							<i class="bi bi-trash me-2"></i>
 						</a> 
+						
 						<div class="text-danger" th:if="${error}" th:text="${error}">	</div>
 
 					</div>
-					
-					
-					
-											
-
 
 
 					<h5 class="mt-5">Ajouter une catégorie</h5>
@@ -108,14 +101,11 @@
 							placeholder="Nom" required>
 						<button type="submit" class="btn btn-outline-primary">Ajouter</button>
 					</form>
-
 				</div>
+				
 				<!-- Taches -->
 				<div class="col-8">
 					<h5 class="mt-3">Liste des tâches</h5>
-
-					<!-- CACHER LES TACHES FINIES BOUTOOONNNNNN -->
-					<!-- https://developer.mozilla.org/en-US/docs/Web/CSS/:checked -->
 
 					<div class="row mt-3 mb-5" th:each="a:${listTasks}">
 						<form th:action="@{/updateTask(id=${a.id},page=${currentPage},keyword=${keyword})}" method="post">
@@ -151,54 +141,17 @@
 										<i class="bi bi-pencil-square mt-3"></i>
 									</button>
 								
-									<a class=""
+									<a class=""  onclick="return confirm('Etes vous sûr de vouloir supprimer cette tâche ?')"
 										th:href="@{/deleteTask(id=${a.id},page=${currentPage},keyword=${keyword})}">
 									<i class="bi bi-trash me-2 mt-3"></i>
 									</a>
 								</div>
 							</div>
-							
 
-									<!-- ID USER -->
-							
 							</div>
 							</form>
-							
-							<!-- 	<p>
-									Tâche : <span th:text="${a.nameTask}"></span>
-								</p>
-								
-								<p>
-									Date : <span th:text="${a.dateTask}"></span>
-								</p>
-							</div>
-	
-							<div class="d-flex flex-row align-items-center">
-								<div class="shadow p-3 mb-0 bg-body rounded w-100 me-2">
-	
-									<div class="d-flex flex-row">
-										<a class="" th:ref="@{/updateInputChecked(${a.checked})}"></a>
-										<input type="checkbox" th:checked="${a.checked}" class="me-3" />
-										<p th:text="${a.description}" class="mb-0"></p>
-									</div>
-	
-									<p class="mb-0 none-if-checked">
-										Catégorie : <span th:text="${a.category.name}"></span>
-									</p>
-								</div>
-	
-								<a class=""
-									th:href="@{/deleteTask(id=${a.id}, page=${currentPage}, keyword=${keyword})}">
-									<i class="bi bi-trash me-2"></i>
-								</a> <a class=""
-									th:href="@{/updateTask(${a.id}, page=${currentPage}, keyword=${keyword})}">
-									<i class="bi bi-pencil-square"></i>
-								</a>
-							</div> -->
-						
-						
-					</div>
 
+					</div>
 
 					<!-- les boutons de pagination -->
 					<ul class="nav nav-pills">

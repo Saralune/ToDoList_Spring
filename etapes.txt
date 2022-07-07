@@ -14,22 +14,31 @@
 - update tache
 - delete tache
 - refaire la page "editTasks" avec des inputs au lieu des button ou taches
+- Relier tache à un user quand sauvegardée
+- afficher les taches par catégorie
+- relier catégorie au user
+- enlever input coté visu
 
 
 A FAIRE JEUDI :
-- afficher les taches par catégorie
 - condition si je supprime une catégorie reliée à une tache + AFFICHAGE DES TACHES ET DES CATEGORIES
-- relier catégorie au user
-- page démo
-- tests unitaires
-- valider en base de données quand input checked
+- pagination selon catégorie
+
 - Exceptions
 - Javadoc
+- tests unitaires
+- page démo
+- clean code
+- code review
 
 BONUS :
 - Couleur par catégorie
 - jolie pagination
 - bouton pour cacher les taches finies
+- Responsive
+
+<!-- CACHER LES TACHES FINIES BOUTOOONNNNNN -->
+<!-- https://developer.mozilla.org/en-US/docs/Web/CSS/:checked -->
 
 //
 - Mettre la date en rouge quand finie

@@ -33,4 +33,4 @@ SELECT * FROM users_role;
 SELECT task.id, category.name, task.checked, task.date_task, 
 task.description, task.name_task, task.users_id FROM task 
 INNER JOIN category WHERE task.deleted = 0 AND task.description LIKE "%pain%" 
-AND category.id = task.category_id;
+AND category.id = task.category_id;task

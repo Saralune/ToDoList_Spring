@@ -14,13 +14,17 @@
     background-color: var(--pastelYellow);   
 }
 
-/**/
+/*
 input:checked + p{
 	text-decoration: line-through;
 	opacity: 0.5;
-}
-input:checked[none-if-checked]{
+}*/
+.none-if-checked{
 	display : none;
+}
+.checked{
+	text-decoration: line-through;
+	opacity: 0.5;
 }
 
 .btn-custom-none{
@@ -29,8 +33,12 @@ input:checked[none-if-checked]{
 }
 
 .btn-custom{
-	border: var(--pastelBlue) solid 2px !important;
-    color: var(--pastelBlue) !important;
+	border: var(--pastelBlue) solid 1px !important;
+    background-color: var(--pastelBlue) !important;
+}
+
+.btn-custom:hover{
+	background-color: blue !important;
 }
 
 i{
