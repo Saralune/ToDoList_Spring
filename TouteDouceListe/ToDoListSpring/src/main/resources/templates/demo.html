@@ -16,132 +16,102 @@
 
 		<div class="container">
 
-			<!-- Search + add -->
-			<div
-				class="row mt-3 mb-5 d-flex flex-md-row flex-sm-column justify-content-md-between align-items-sm-center">
-				<!-- Search -->
-				
-				<!-- ////////////////////////////FAIRE DES COL SELON TAILLE ECRAN -->
-				
-				<form class="d-flex col-4" role="search" th:action="@{/tasks}"
-					method="get">
-					<input class="form-control me-2" type="search" name="keyword"
-						th:value="${keyword}" placeholder="Rechercher" aria-label="Search">
-					<button class="btn btn-outline-success" type="submit">
-						<i class="bi bi-search-heart"></i>
-					</button>
-				</form>
-
-				<!-- Add -->
-				<div class="col-8">
-					<h5 class="mt-3">Ajouter une tâche</h5>
-					
-					<!-- <form th:action="@{/saveTask}" method="post" th:object="${task}">
-						<input type="text" class="form-control me-2 mb-3" name="description" placeholder="Description"
-							required>
-						th:value="${task.description}" 
-						<span th:errors="${article.description}"></span>
-	
-						<div class="d-flex flex-row">
-							<input type="text" class="form-control me-2" name="nameTask" placeholder="Nom"
-							 required>
-							
-							<input type="date" class="form-control me-2" name="dateTask" required>
-							
-							<select class="form-select me-2" aria-label="Choose category"
-								name="Category">
-	
-								<option th:each="c:${listCategories}" th:value="${c.id}"
-									th:text="${c.name}"></option>
-							</select>
-	
-							<button type="submit" class="btn btn-outline-primary">Ajouter</button>
-						</div>
-	
-					</form> -->
-				</div>
-			
-			</div>
-
-			<!-- Cat + Taches -->
 			<div class="row">
-				<!-- Categories -->
 				<div class="d-flex flex-column col-4">
+
+					<!--  Search -->
+					<form class="d-flex mt-3 mb-3" role="search" th:action="@{/demo}"
+						method="get">
+						<input class="form-control me-2" type="search" name="keyword"
+							th:value="${keyword}" placeholder="Rechercher"
+							aria-label="Search">
+						<button class="btn btn-outline-success" type="submit">
+							<i class="bi bi-search-heart"></i>
+						</button>
+					</form>
+					
 					<h5 class="mt-3">Liste des catégories</h5>
-
-					<div th:each="c:${listCategories}" class="d-flex flex-row align-items-center mt-3">
-						<button type="button"
-							class="btn btn-outline-success w-100 me-2" th:text="${c.name}">Bouton
-							Catégorie</button>
-							
-						<a class="" th:href="@{/deleteCategory(id=${c.id}, page=${currentPage}, keyword=${keyword})}">
-							<i class="bi bi-trash me-2"></i> 
-						</a>
-						
-						<i class="bi bi-pencil-square"></i>
-					</div>
 					
-
-					
-					<h5 class="mt-5">Ajouter une catégorie</h5>
-<!-- 					<form th:action="@{/saveCategory}" method="post" th:object="${category}" class="d-flex flex-row">
-						<input type="text" class="form-control me-2" name="name" placeholder="Nom"
-							 required>
-						<button type="submit" class="btn btn-outline-primary">Ajouter</button>
-					</form> -->
-
+					<div class="d-flex flex-column">
+	                  	<button class="btn btn-custom mt-3 w-100" type="button">Loisirs</button>
+	                  	<button class="btn btn-custom mt-3 w-100" type="button">Courses</button>
+	                  	<button class="btn btn-custom mt-3 w-100" type="button">Bébé</button>
+	                  	<button class="btn btn-custom mt-3 w-100" type="button">Travail</button>
+	                  	<button class="btn btn-custom mt-3 w-100" type="button">Famille</button>
+                    </div>
 				</div>
-				<!-- Taches -->
+	
 				<div class="col-8">
 					<h5 class="mt-3">Liste des tâches</h5>
-					
-					<!-- CACHER LES TACHES FINIES BOUTOOONNNNNN -->
-					<!-- https://developer.mozilla.org/en-US/docs/Web/CSS/:checked -->
 
-					<div class="row mt-3 mb-5" th:each="a:${listTasks}">
-
+					<div class="row mt-3 mb-5">
 						<div class="d-flex flex-row justify-content-between">
-							<p>
-								Tâche : <span th:text="${a.nameTask}"></span>
-							</p>
-							<p>
-								Date : <span th:text="${a.dateTask}"></span>
-							</p>
+							<p> Tâche : Noël </p>
+							<p class="mb-0"> Catégorie : Famille </p>
+							<p> Date : 2022-12-24 </p>
 						</div>
-
-						<div class="d-flex flex-row align-items-center">
-							<div class="shadow p-3 mb-0 bg-body rounded w-100 me-2">
-							
-								<div class="d-flex flex-row">
-									<input type="checkbox" th:checked="${a.checked}" class="me-3" />
-									<p th:text="${a.description}" class="mb-0"></p>
-								</div>
-								
-								<p class="mb-0 none-if-checked">
-									Catégorie : <span th:text="${a.category.name}"></span>
-								</p>
-							</div>
-
-<!-- 							<a class="" th:href="@{/deleteTask(id=${a.id}, page=${currentPage}, keyword=${keyword})}">
-								<i class="bi bi-trash me-2"></i>
-							</a> 
-							
-							<a class="" th:href="@{/updateTask(${a}, page=${currentPage}, keyword=${keyword})}">
-								<i class="bi bi-pencil-square"></i>
-							</a> -->
+						
+						<div class="d-flex flex-row shadow-lg p-3 mb-0 bg-body rounded w-100 mb-5">
+	 						<input type="checkbox" checked class="me-3" />
+							<p class="mb-0 checked">Acheter les cadeaux de Noël</p>
+						</div>	
+						
+						<div class="d-flex flex-row justify-content-between">
+							<p> Tâche : Profiter </p>
+							<p class="mb-0"> Catégorie : Loisirs </p>
+							<p> Date : 2022-07-08 </p>
 						</div>
+						
+						<div class="d-flex flex-row shadow-lg p-3 mb-0 bg-body rounded w-100 mb-5">
+	 						<input type="checkbox" class="me-3" />
+							<p class="mb-0">Faire de la couture !!!</p>
+						</div>	
+						
+						<div class="d-flex flex-row justify-content-between">
+							<p> Tâche : Appli </p>
+							<p class="mb-0"> Catégorie : Travail </p>
+							<p> Date : 2022-07-08 </p>
+						</div>
+						
+						<div class="d-flex flex-row shadow-lg p-3 mb-0 bg-body rounded w-100 mb-5">
+	 						<input type="checkbox" checked class="me-3" />
+							<p class="mb-0 checked">Finir de développer l'application</p>
+						</div>	
+						
+						<div class="d-flex flex-row justify-content-between">
+							<p> Tâche : Habits </p>
+							<p class="mb-0"> Catégorie : Bébé </p>
+							<p> Date : 2022-09-01 </p>
+						</div>
+						
+						<div class="d-flex flex-row shadow-lg p-3 mb-0 bg-body rounded w-100 mb-5">
+	 						<input type="checkbox"  class="me-3" />
+							<p class="mb-0 ">Faire le tri dans les habits pour la rentrée</p>
+						</div>	
+						
+						<div class="d-flex flex-row justify-content-between">
+							<p> Tâche : Ecole </p>
+							<p class="mb-0"> Catégorie : Courses </p>
+							<p> Date : 2022-09-01 </p>
+						</div>
+						
+						<div class="d-flex flex-row shadow-lg p-3 mb-0 bg-body rounded w-100 mb-5">
+	 						<input type="checkbox"  class="me-3" />
+							<p class="mb-0">Acheter les fournitures scolaires</p>
+						</div>	
+						
+							
 					</div>
 
-
-					<!-- les boutons de pagination -->
-					<ul class="nav nav-pills">
-						<li class="nav-item" th:each="page,status:${pages}"><a
-							th:class="${currentPage==status.index}?'nav-link active':'nav-link'"
-							th:href="@{/tasks(page=${status.index},keyword=${keyword})}"
-							th:text="${status.index}"></a></li>
-					</ul>
-
 				</div>
+				
+				
+				<div class="col-12">
+					<h5>Un petit aperçu de la gestion des tâches :</h5>
+					
+					<!-- <img alt="Gestion des tâches" th:src=""> -->
+				</div>
+				
 			</div>
 		</div>
 

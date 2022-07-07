@@ -37,7 +37,8 @@ public class CategoryController {
 	private final Logger logger = LoggerFactory.getLogger(CategoryController.class);
 	
 	@PostMapping("/saveCategory")
-	public String saveCategory(Model model, @Valid Category category) {	
+	public String saveCategory(Model model, @Valid Category category, 
+			RedirectAttributes redirectAttrs) {	
 		String mail = SecurityContextHolder.getContext().getAuthentication().getName();
 		try {
 			Users user = business.getUserByMail(mail);
@@ -45,7 +46,7 @@ public class CategoryController {
 			
 			business.saveOrUpdateCategory(category);
 		} catch (Exception e) {
-			e.printStackTrace();
+			redirectAttrs.addAttribute("error",e.getMessage());
 		}
 		
 		return "redirect:/editTasks";
@@ -53,7 +54,8 @@ public class CategoryController {
 	
 	@PostMapping("/updateCategory")
 	public String updateCategory(Model model, @Valid Category category, BindingResult bindingResult,
-            @RequestParam(value = "id") Long id) {
+            @RequestParam(value = "id") Long id, 
+			RedirectAttributes redirectAttrs) {
 		 
 		if (bindingResult.hasErrors()) {
 			System.err.println(bindingResult.getAllErrors());
@@ -64,7 +66,7 @@ public class CategoryController {
 			Category cat = business.readCategoryById(id);
 			if(cat != null) business.saveOrUpdateCategory(category);
 		} catch (Exception e) {
-			e.printStackTrace();
+			redirectAttrs.addAttribute("error",e.getMessage());
 		}
 
 		return "redirect:/editTasks";
@@ -89,7 +91,8 @@ public class CategoryController {
 
     // affiche les articles par catégorie
     @GetMapping("/tasksByCategory")
-    public String tasksByCategory(Model model, Long id, int page) {
+    public String tasksByCategory(Model model, Long id, int page, 
+			RedirectAttributes redirectAttrs) {
     	try {
     		Category category = business.readCategoryById(id);
 			Page<Task> tasksByCat = business.readTasksByCategory(id, page, 5);
@@ -98,7 +101,7 @@ public class CategoryController {
 		    //return "redirect:/readTasks?category=" + id;
 	        
 		} catch (Exception e) {
-			e.printStackTrace();
+			redirectAttrs.addAttribute("error",e.getMessage());
 		}
 
         return "redirect:/readTasks";

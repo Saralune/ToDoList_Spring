@@ -31,6 +31,10 @@
 						<i class="bi bi-search-heart"></i>
 					</button>
 				</form>
+				
+				<!-- ERRORS -->
+				<p class="alert alert-danger" th:if="${error}" role="alert" th:text="${error}"></p>
+				<div class="text-danger" th:if="${error}" th:text="${error}">	</div>
 
 				<!-- Add -->
 				<div class="col-8">
@@ -89,18 +93,25 @@
 							<i class="bi bi-trash me-2"></i>
 						</a> 
 						
-						<div class="text-danger" th:if="${error}" th:text="${error}">	</div>
 
 					</div>
 
 
-					<h5 class="mt-5">Ajouter une catégorie</h5>
-					<form th:action="@{/saveCategory}" method="post"
-						th:object="${category}" class="d-flex flex-row">
-						<input type="text" class="form-control me-2" name="name"
-							placeholder="Nom" required>
-						<button type="submit" class="btn btn-outline-primary">Ajouter</button>
-					</form>
+
+					<div th:if="${listCategoriesSize < 10}">
+						<h5 class="mt-5">Ajouter une catégorie</h5>
+						<form th:action="@{/saveCategory}" method="post"
+							th:object="${category}" class="d-flex flex-row">
+							<input type="text" class="form-control me-2" name="name"
+								placeholder="Nom" required>
+							<button type="submit" class="btn btn-outline-primary">Ajouter</button>
+						</form>					
+					</div>
+					
+					<div th:if="${listCategoriesSize >= 10}">
+						<p class="alert alert-primary" role="alert">Vous ne pouvez pas ajouter plus de 10 catégories.</p>
+					</div>
+
 				</div>
 				
 				<!-- Taches -->
@@ -158,7 +169,7 @@
 						<li class="nav-item" th:each="page,status:${pages}"><a
 							th:class="${currentPage==status.index}?'nav-link active':'nav-link'"
 							th:href="@{/editTasks(page=${status.index},keyword=${keyword})}"
-							th:text="${status.index}"></a></li>
+							th:text="${status.index}+1"></a></li>
 					</ul>
 
 				</div>

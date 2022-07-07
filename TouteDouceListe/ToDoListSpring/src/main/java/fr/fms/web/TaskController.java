@@ -40,9 +40,13 @@ public class TaskController {
 			@RequestParam(name = "category", defaultValue = "") Long idCat) {
 		
 		Page<Task> listTasks;
+		String mail = SecurityContextHolder.getContext().getAuthentication().getName();
+		
 		try {
-			listTasks = business.readByDescriptionContains(kw, page, 5);
-			List<Category> listCategories = business.findAllCategories();
+			Users user = business.getUserByMail(mail);
+			
+			listTasks = business.readByDescriptionContains(kw, page, 5, user);
+			List<Category> listCategories = business.findAllCategoriesByUsers(user);
 			Page<Task> tasksByCat = business.readTasksByCategory(idCat, page, 5);
 			
 			model.addAttribute("listCategories", listCategories);
@@ -55,7 +59,7 @@ public class TaskController {
 				model.addAttribute("pages", new int[listTasks.getTotalPages()]);
 			}	
 		} catch (Exception e) {
-			e.printStackTrace();
+			model.addAttribute("error",e.getMessage());
 		}
 
 		model.addAttribute("currentPage", page);
@@ -68,15 +72,21 @@ public class TaskController {
 	public String tasks(Model model, @RequestParam(name = "page", defaultValue = "0") int page,
 			@RequestParam(name = "keyword", defaultValue = "") String kw) {
 		Page<Task> listTasks;
+		String mail = SecurityContextHolder.getContext().getAuthentication().getName();
+		
 		try {
-			listTasks = business.readByDescriptionContains(kw, page, 5);
-			List<Category> listCategories = business.findAllCategories();
+			Users user = business.getUserByMail(mail);
+			listTasks = business.readByDescriptionContains(kw, page, 5, user);
+			List<Category> listCategories = business.findAllCategoriesByUsers(user);
 
 			model.addAttribute("listCategories", listCategories);
+			model.addAttribute("listCategoriesSize", listCategories.size());
 			model.addAttribute("listTasks", listTasks.getContent());
 			model.addAttribute("pages", new int[listTasks.getTotalPages()]);
 		} catch (Exception e) {
 			e.printStackTrace();
+
+			model.addAttribute("error", e.getMessage());
 		}
 		
 		model.addAttribute("currentPage", page);
@@ -86,30 +96,33 @@ public class TaskController {
 	}
 
 	@PostMapping("/saveTask")
-	public String saveTask(Model model, @Valid Task task) {
+	public String saveTask(Model model, @Valid Task task, 
+			RedirectAttributes redirectAttrs) {
 		String mail = SecurityContextHolder.getContext().getAuthentication().getName();
 		
 		try {
-			List<Category> listCategories = business.findAllCategories();
+			Users user = business.getUserByMail(mail);
+			
+			List<Category> listCategories = business.findAllCategoriesByUsers(user);
 			model.addAttribute("listCategories", listCategories);
 			
-			Users user = business.getUserByMail(mail);
 			task.setUsers(user);
 			
 			business.saveOrUpdateTask(task);
 		} catch (Exception e) {
-			e.printStackTrace();
+			redirectAttrs.addAttribute("error",e.getMessage());
 		}
 		
 		return "redirect:/editTasks";
 	}
 
 	@GetMapping("/deleteTask")
-	public String deleteTask(Long id, int page, String keyword) {
+	public String deleteTask(Long id, int page, String keyword, 
+			RedirectAttributes redirectAttrs) {
 		try {
 			business.deleteTask(id);
 		} catch (Exception e) {
-			e.printStackTrace();
+			redirectAttrs.addAttribute("error",e.getMessage());
 		}
 
 		return "redirect:/editTasks?page=" + page + "&keyword=" + keyword;
@@ -118,7 +131,8 @@ public class TaskController {
 	@PostMapping("/updateTask")
 	public String updateArticle(@Valid Task task, BindingResult bindingResult, @RequestParam(value = "id") Long id,
 			@RequestParam(name = "page", defaultValue = "0") int page,
-			@RequestParam(name = "keyword", defaultValue = "") String keyword) {
+			@RequestParam(name = "keyword", defaultValue = "") String keyword, 
+			RedirectAttributes redirectAttrs) {
 		if (bindingResult.hasErrors()) return "editTasks";
 
 		try {
@@ -126,7 +140,7 @@ public class TaskController {
 
 			if (taskToEdit != null) business.saveOrUpdateTask(task);
 		} catch (Exception e) {
-			e.printStackTrace();
+			redirectAttrs.addAttribute("error",e.getMessage());
 		}
 
 		return "redirect:/editTasks?page=" + page + "&keyword=" + keyword;

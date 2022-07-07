@@ -18,18 +18,20 @@
 - afficher les taches par catégorie
 - relier catégorie au user
 - enlever input coté visu
+- pagination selon catégorie
+- Exceptions
+- Javadoc
 
 
 A FAIRE JEUDI :
 - condition si je supprime une catégorie reliée à une tache + AFFICHAGE DES TACHES ET DES CATEGORIES
-- pagination selon catégorie
 
-- Exceptions
-- Javadoc
 - tests unitaires
 - page démo
 - clean code
 - code review
+
+- beauté pastel 
 
 BONUS :
 - Couleur par catégorie

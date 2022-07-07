@@ -49,7 +49,6 @@ public class Task {
 	@Size(min = 2, max = 100, message = "La taille doit être comprise entre 2 et 100 caractères.")
 	private String description;
 	
-	//TODO FAIRE UNE CLASSE STATUT ??
 //	@ManyToOne
 //	private String status;
 	
@@ -62,4 +61,27 @@ public class Task {
 	
 	@ManyToOne
 	private Users users;
+
+	/**
+	 * @param id
+	 * @param nameTask
+	 * @param dateTask
+	 * @param description
+	 * @param checked
+	 * @param deleted
+	 */
+	public Task(Long id,
+			@NotNull @Size(min = 2, max = 20, message = "La taille doit être comprise entre 2 et 50 caractères.") String nameTask,
+			@NotNull LocalDate dateTask,
+			@NotNull @Size(min = 2, max = 100, message = "La taille doit être comprise entre 2 et 100 caractères.") String description,
+			boolean checked, boolean deleted) {
+		this.id = id;
+		this.nameTask = nameTask;
+		this.dateTask = dateTask;
+		this.description = description;
+		this.checked = checked;
+		this.deleted = deleted;
+	}
+	
+	
 }
