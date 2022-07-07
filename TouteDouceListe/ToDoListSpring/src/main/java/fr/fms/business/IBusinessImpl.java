@@ -7,8 +7,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import org.hibernate.Filter;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -46,16 +44,6 @@ public class IBusinessImpl implements IBusiness {
 		return taskRepository.findByDescriptionContainsAndUsers(keyword, PageRequest.of(page, tasksByPage), user);
 	}
 	
-//	@Override
-//	public Page<Task> readByDescriptionContains(String keyword, int page, int tasksByPage) throws Exception {       
-//		return taskRepository.findByDescriptionContains(keyword, PageRequest.of(page, tasksByPage));
-//	}
-
-//	@Override
-//	public List<Category> findAllCategories() throws Exception {
-//		return categoryRepository.findAll();
-//	}
-	
 	@Override
 	public List<Category> findAllCategoriesByUsers(Users users) throws Exception {
 		return categoryRepository.findAllByUsers(users);
@@ -85,11 +73,6 @@ public class IBusinessImpl implements IBusiness {
 	public Page<Task> readTasksByCategory(Long id, int page, int tasksByPage) throws Exception {
 		return taskRepository.findByCategoryId(id, PageRequest.of(page, tasksByPage));
 	}
-	
-//	@Override
-//	public Page<Task> readTasksByCategory(Long id, int page, int tasksByPage) throws Exception {
-//		return taskRepository.findByCategoryId(id, PageRequest.of(page, tasksByPage));
-//	}
 
 	@Override
 	public Category readCategoryById(Long id) throws Exception {

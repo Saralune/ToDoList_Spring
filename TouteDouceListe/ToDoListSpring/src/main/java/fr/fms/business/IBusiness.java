@@ -17,21 +17,21 @@ import fr.fms.entities.Users;
  */
 public interface IBusiness {
 	/**
-	 * Find all tasks where description contains keyword. Return a list of tasks, organised by pages.
+	 * Find all tasks where description contains keyword, by user. Return a list of tasks, organised by pages.
 	 * @param keyword
 	 * @param page
 	 * @param tasksByPage
 	 * @return Tasks By Page
 	 * @throws Exception
 	 */
-	//public Page<Task> readByDescriptionContains(String keyword, int page, int tasksByPage) throws Exception;
-	
+	Page<Task> readByDescriptionContains(String keyword, int page, int tasksByPage, Users users) throws Exception;
+
 	/**
 	 * Return a list of categories, by user, in database.
 	 * @return
 	 * @throws Exception
 	 */
-	//public List<Category> findAllCategories() throws Exception;
+	public List<Category> findAllCategoriesByUsers(Users users) throws Exception;
 	
 	/**
 	 * Method to add or update a task in database.
@@ -95,7 +95,5 @@ public interface IBusiness {
 	 */
 	public Users getUserByMail(String mail) throws Exception;
 
-	public List<Category> findAllCategoriesByUsers(Users users) throws Exception;
 
-	Page<Task> readByDescriptionContains(String keyword, int page, int tasksByPage, Users users) throws Exception;
 }

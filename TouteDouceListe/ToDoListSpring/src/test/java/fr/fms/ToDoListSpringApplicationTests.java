@@ -36,50 +36,50 @@ class ToDoListSpringApplicationTests {
 //		}
 //	}
 	
-//	@Test
-//	void testReadCategories() {
-//		try {
-//			assertThat(business.readCategoryById((long) 1)).isNotNull();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
-//	
-//	@Test
-//	void testEqualUser() {
-//		try {
-//			assertEquals((long) 2, business.getUserByMail("saralune@mail.fr").getId());
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
-//	
-//	@Test
-//	void testGetArticle() {
-//		try {
-//			assertThat(business.readTasksById((long) 12)).isNotNull();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
-//	
-//	@Test
-//	void testGetArticleDeleted() {
-//		try {
-//			assertThat(business.readTasksById((long) 3)).isNull();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
-//	
-//	@Test
-//	void testCountCategories() {
-//		try {
-//			//assertEquals(business.findAllCategoriesByUsers().size(), 5);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
+	@Test
+	void testReadCategories() {
+		try {
+			assertThat(business.readCategoryById((long) 1)).isNotNull();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	void testEqualUser() {
+		try {
+			assertEquals((long) 2, business.getUserByMail("saralune@mail.fr").getId());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	void testGetArticle() {
+		try {
+			assertThat(business.readTasksById((long) 12)).isNotNull();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	void testGetArticleDeleted() {
+		try {
+			assertThat(business.readTasksById((long) 3)).isNull();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	void testCountCategories() {
+		try {
+			assertEquals(business.findAllCategoriesByUsers(business.getUserByMail("test@test.fr")).size(), 1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	@Test
 	void testFindCategoriesByUsers() {
@@ -90,15 +90,15 @@ class ToDoListSpringApplicationTests {
 		}
 	}
 	
-//	@Test
-//	void testReadByDescriptionContains() {
-//		try {
-//			Page<Task> listTasks = business.readByDescriptionContains("à faire", 0, 5, business.getUserByMail("test@test.fr"));
-//			Task task = listTasks.getContent().get(0);
-//			
-//			assertEquals(task.getId(), (long) 18);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
+	@Test
+	void testReadByDescriptionContains() {
+		try {
+			Page<Task> listTasks = business.readByDescriptionContains("à faire", 0, 5, business.getUserByMail("test@test.fr"));
+			Task task = listTasks.getContent().get(0);
+			
+			assertEquals(task.getId(), (long) 18);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

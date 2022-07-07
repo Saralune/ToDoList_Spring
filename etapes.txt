@@ -21,12 +21,13 @@
 - pagination selon catégorie
 - Exceptions
 - Javadoc
+- afficher taches et categories par user
+- tests unitaires
 
 
 A FAIRE JEUDI :
 - condition si je supprime une catégorie reliée à une tache + AFFICHAGE DES TACHES ET DES CATEGORIES
 
-- tests unitaires
 - page démo
 - clean code
 - code review
