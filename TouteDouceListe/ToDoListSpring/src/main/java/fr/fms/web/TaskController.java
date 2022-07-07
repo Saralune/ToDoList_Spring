@@ -50,6 +50,7 @@ public class TaskController {
 			Page<Task> tasksByCat = business.readTasksByCategory(idCat, page, 5);
 			
 			model.addAttribute("listCategories", listCategories);
+			model.addAttribute("listCategoriesSize", listCategories.size());
 			model.addAttribute("pages", new int[tasksByCat.getTotalPages()]);
 			model.addAttribute("listTasks", tasksByCat.getContent());
 			model.addAttribute("idCat", idCat);
@@ -133,10 +134,14 @@ public class TaskController {
 			@RequestParam(name = "page", defaultValue = "0") int page,
 			@RequestParam(name = "keyword", defaultValue = "") String keyword, 
 			RedirectAttributes redirectAttrs) {
+		String mail = SecurityContextHolder.getContext().getAuthentication().getName();
 		if (bindingResult.hasErrors()) return "editTasks";
 
 		try {
+			Users user = business.getUserByMail(mail);
 			Task taskToEdit = business.readTasksById(id);
+			
+			task.setUsers(user);
 
 			if (taskToEdit != null) business.saveOrUpdateTask(task);
 		} catch (Exception e) {

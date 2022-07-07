@@ -32,6 +32,8 @@ A FAIRE JEUDI :
 - clean code
 - code review
 
+- JAR
+
 - beauté pastel 
 
 BONUS :

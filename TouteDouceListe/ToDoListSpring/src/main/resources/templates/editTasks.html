@@ -16,12 +16,9 @@
 
 		<div class="container">
 
-			<!-- Search + add -->
+
 			<div
 				class="row mt-3 mb-5 d-flex flex-md-row flex-sm-column justify-content-md-between align-items-sm-center">
-				<!-- Search -->
-
-				<!-- ////////////////////////////FAIRE DES COL SELON TAILLE ECRAN -->
 
 				<form class="d-flex col-4" role="search" th:action="@{/editTasks}"
 					method="get">
@@ -31,10 +28,6 @@
 						<i class="bi bi-search-heart"></i>
 					</button>
 				</form>
-				
-				<!-- ERRORS -->
-				<p class="alert alert-danger" th:if="${error}" role="alert" th:text="${error}"></p>
-				<div class="text-danger" th:if="${error}" th:text="${error}">	</div>
 
 				<!-- Add -->
 				<div class="col-8">
@@ -43,15 +36,11 @@
 					<form th:action="@{/saveTask}" method="post" th:object="${task}">
 						<input type="text" class="form-control me-2 mb-3"
 							name="description" placeholder="Description" required>
-						<!-- th:value="${task.description}"  -->
-						<!-- <span th:errors="${article.description}"></span> -->
 
 						<div class="d-flex flex-row">
 							<input type="text" class="form-control me-2" name="nameTask"
 								placeholder="Nom" required> <input type="date"
-								class="form-control me-2" name="dateTask" required> 
-								
-								<select
+								class="form-control me-2" name="dateTask" required> <select
 								class="form-select me-2" aria-label="Choose category"
 								name="Category">
 
@@ -67,32 +56,45 @@
 
 			</div>
 
+			<!-- ERRORS -->
+			<p class="alert alert-danger" th:if="${error}" role="alert"
+				th:text="${error}"></p>
+
 			<!-- Cat + Taches -->
 			<div class="row">
+
 				<!-- Categories -->
 				<div class="d-flex flex-column col-4">
+
 					<h5 class="mt-3">Liste des catégories</h5>
+
+					<p class="alert alert-danger" th:if="${listCategoriesSize == 0}"
+						role="alert">Vous n'avez pas de catégorie. Dépêchez-vous d'en
+						créer une !</p>
 
 					<div th:each="c:${listCategories}"
 						class="d-flex flex-row align-items-center mt-3">
 
-						<form th:action="@{/updateCategory(id=${c.id})}" method="post" th:object="${category}" class="d-flex flex-row w-100">
+						<form th:action="@{/updateCategory(id=${c.id})}" method="post"
+							th:object="${category}" class="d-flex flex-row w-100">
 							<div class="form-floating mb-3 w-100">
-								<input type="text" class="form-control" id="floatingCategory+${c.id}"
-									placeholder="category" th:value="${c.name}" name="name"> 
-								<label for="floatingCategory+${c.id}">Modifier la categorie</label>
+								<input type="text" class="form-control"
+									id="floatingCategory+${c.id}" placeholder="category"
+									th:value="${c.name}" name="name"> <label
+									for="floatingCategory+${c.id}">Modifier la categorie</label>
 							</div>
-							
+
 							<button type="submit" class="btn-custom-none mb-3">
 								<i class="bi bi-pencil-square"></i>
 							</button>
 						</form>
 
-						<a class="mb-3" onclick="return confirm('Etes vous sûr de vouloir supprimer cette catégorie ?')"  
-							th:href="@{/deleteCategory(id=${c.id})}">
-							<i class="bi bi-trash me-2"></i>
-						</a> 
-						
+						<a class="mb-3"
+							onclick="return confirm('Etes vous sûr de vouloir supprimer cette catégorie ?')"
+							th:href="@{/deleteCategory(id=${c.id})}"> <i
+							class="bi bi-trash me-2"></i>
+						</a>
+
 
 					</div>
 
@@ -105,62 +107,75 @@
 							<input type="text" class="form-control me-2" name="name"
 								placeholder="Nom" required>
 							<button type="submit" class="btn btn-outline-primary">Ajouter</button>
-						</form>					
+						</form>
 					</div>
-					
+
 					<div th:if="${listCategoriesSize >= 10}">
-						<p class="alert alert-primary" role="alert">Vous ne pouvez pas ajouter plus de 10 catégories.</p>
+						<p class="alert alert-primary" role="alert">Vous ne pouvez pas
+							ajouter plus de 10 catégories.</p>
 					</div>
 
 				</div>
-				
+
 				<!-- Taches -->
 				<div class="col-8">
 					<h5 class="mt-3">Liste des tâches</h5>
 
+					<p class="alert alert-danger" th:if="${listCategoriesSize == 0}"
+						role="alert">Vous n'avez pas de tâches. Dépêchez-vous d'en
+						créer une !</p>
+
 					<div class="row mt-3 mb-5" th:each="a:${listTasks}">
-						<form th:action="@{/updateTask(id=${a.id},page=${currentPage},keyword=${keyword})}" method="post">
+						<form
+							th:action="@{/updateTask(id=${a.id},page=${currentPage},keyword=${keyword})}"
+							method="post">
 							<div class="d-flex flex-row justify-content-between">
-							
-							<div class="shadow p-3 mb-0 bg-body rounded w-100 me-2">
-														
-								<div class="d-flex flex-row align-items-center">
-									<div class="form-floating w-100 me-2">
-										<input type="text" class="form-control" id="floatingTaskName+${a.id}"
-													th:value="${a.nameTask}" name="nameTask"> 
-										<label for="floatingTaskName+${a.id}">Modifier le nom</label>
+
+								<div class="shadow p-3 mb-0 bg-body rounded w-100 me-2">
+
+									<div class="d-flex flex-row align-items-center">
+										<div class="form-floating w-100 me-2">
+											<input type="text" class="form-control"
+												id="floatingTaskName+${a.id}" th:value="${a.nameTask}"
+												name="nameTask"> <label
+												for="floatingTaskName+${a.id}">Modifier le nom</label>
+										</div>
+
+										<input type="date" class="form-control me-2"
+											th:value="${a.dateTask}" name="dateTask"
+											style="height: 58px;"> <select class="form-select"
+											name="category" style="height: 58px;">
+											<option th:each="c:${listCategories}" th:value="${c.id}"
+												th:text="${c.name}"></option>
+										</select>
 									</div>
-									
-									<input type="date" class="form-control me-2" th:value="${a.dateTask}" name="dateTask" style="height: 58px;"> 
-									
-									<select class="form-select"  name="category"  style="height: 58px;">
-										<option th:each="c:${listCategories}" th:value="${c.id}"
-											th:text="${c.name}"></option>
-									</select>
+
+									<div class="d-flex flex-row align-items-center">
+										<input type="checkbox" th:checked="${a.checked}"
+											name="checked" class="me-2" />
+
+										<div class="form-floating mt-3 w-100 me-2">
+											<input type="text" class="form-control"
+												th:id="floatingTaskDesc+${a.id}" th:value="${a.description}"
+												name="description"> <label
+												th:for="floatingTaskDesc+${a.id}">Modifier la
+												description</label>
+										</div>
+
+										<button type="submit" class="btn-custom-none">
+											<i class="bi bi-pencil-square mt-3"></i>
+										</button>
+
+										<a class=""
+											onclick="return confirm('Etes vous sûr de vouloir supprimer cette tâche ?')"
+											th:href="@{/deleteTask(id=${a.id},page=${currentPage},keyword=${keyword})}">
+											<i class="bi bi-trash me-2 mt-3"></i>
+										</a>
+									</div>
 								</div>
-								
-								<div class="d-flex flex-row align-items-center">
-									<input type="checkbox" th:checked="${a.checked}" name="checked" class="me-2" />	
-									
-									<div class="form-floating mt-3 w-100 me-2">
-										<input type="text" class="form-control" th:id="floatingTaskDesc+${a.id}"
-											 th:value="${a.description}" name="description"> 
-										<label th:for="floatingTaskDesc+${a.id}">Modifier la description</label>
-									</div>								
-								
-									 <button type="submit" class="btn-custom-none">
-										<i class="bi bi-pencil-square mt-3"></i>
-									</button>
-								
-									<a class=""  onclick="return confirm('Etes vous sûr de vouloir supprimer cette tâche ?')"
-										th:href="@{/deleteTask(id=${a.id},page=${currentPage},keyword=${keyword})}">
-									<i class="bi bi-trash me-2 mt-3"></i>
-									</a>
-								</div>
-							</div>
 
 							</div>
-							</form>
+						</form>
 
 					</div>
 

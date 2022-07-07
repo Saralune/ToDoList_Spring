@@ -18,10 +18,7 @@ import fr.fms.entities.Users;
  */
 @Controller
 public class UsersController {
-	
-	//TODO Voir quel login garder ??
-	
-	
+		
    @GetMapping("/login")
     public String login(Model model, Users users) {
         return "login";
@@ -51,11 +48,6 @@ public class UsersController {
 	public String error404() {
 		return "404";
 	}
-		
-	@GetMapping("/home")
-	public String home(Model model) {
-		return "demo";
-	}
 	
 	@GetMapping("/demo")
 	public String demo(Model model) {
@@ -70,9 +62,6 @@ public class UsersController {
 
 	@GetMapping("/")
 	public String accueil(HttpSession session) {
-		//TODO INDIQUER LE NB DE TACHES ????
-//		int length = business.sizeCaddy();
-//		session.setAttribute("isAuthentified", authentified);
 		return "editTasks";
 	}
 	
