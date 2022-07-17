@@ -132,3 +132,16 @@ i{
 	border: none !important;
 	background-color: var(--pastelLightGreen) !important;
 }
+
+/*Pagination*/
+.nav-pills .nav-link.active{
+	border: none !important;
+	background-color: var(--pastelYellow) !important;
+	color : #212529 !important;
+	border-radius : 0.375rem;
+}
+
+.nav-pills .nav-link{
+	color : #212529 !important;
+	border-radius : 0.375rem;
+}

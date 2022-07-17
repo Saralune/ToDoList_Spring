@@ -55,6 +55,7 @@ public class TaskController {
 			model.addAttribute("listCategoriesSize", listCategories.size());
 			model.addAttribute("pages", new int[tasksByCat.getTotalPages()]);
 			model.addAttribute("listTasks", tasksByCat.getContent());
+			model.addAttribute("listTasksByCatSize", tasksByCat.getTotalElements());
 			model.addAttribute("idCat", idCat);
 			model.addAttribute("buttonBgColor", buttonBgColor());
 			
