@@ -23,15 +23,12 @@
 - Javadoc
 - afficher taches et categories par user
 - tests unitaires
+- page démo
+- clean code
 
 
 A FAIRE JEUDI :
 - condition si je supprime une catégorie reliée à une tache + AFFICHAGE DES TACHES ET DES CATEGORIES
-
-- page démo
-- clean code
-- code review
-
 - JAR
 
 - beauté pastel 
@@ -46,4 +43,4 @@ BONUS :
 <!-- https://developer.mozilla.org/en-US/docs/Web/CSS/:checked -->
 
 //
-- Mettre la date en rouge quand finie
+- Mettre la date en rouge quand dépassée

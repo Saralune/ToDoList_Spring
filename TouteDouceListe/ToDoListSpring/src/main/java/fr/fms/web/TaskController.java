@@ -47,13 +47,16 @@ public class TaskController {
 			
 			listTasks = business.readByDescriptionContains(kw, page, 5, user);
 			List<Category> listCategories = business.findAllCategoriesByUsers(user);
-			Page<Task> tasksByCat = business.readTasksByCategory(idCat, page, 5);
+			Page<Task> tasksByCat = business.readTasksByCategory(idCat, page, 5);	
+			
+			//listCategories.indexOf(business.readCategoryById());
 			
 			model.addAttribute("listCategories", listCategories);
 			model.addAttribute("listCategoriesSize", listCategories.size());
 			model.addAttribute("pages", new int[tasksByCat.getTotalPages()]);
 			model.addAttribute("listTasks", tasksByCat.getContent());
 			model.addAttribute("idCat", idCat);
+			model.addAttribute("buttonBgColor", buttonBgColor());
 			
 			if(idCat == null) {
 				model.addAttribute("listTasks", listTasks.getContent());
@@ -149,5 +152,10 @@ public class TaskController {
 		}
 
 		return "redirect:/editTasks?page=" + page + "&keyword=" + keyword;
+	}
+	
+	public String[] buttonBgColor() {
+		String[] pastelsColors = {"bgPastelPinkOrange", "bgPastelOrange", "bgPastelLightPink", "bgPastelPink", "bgPastelPurple", "bgPastelLightPurple", "bgPastelLightBlue", "bgPastelBlue", "bgPastelGreen", "bgPastelLightGreen"};
+		return pastelsColors;
 	}
 }

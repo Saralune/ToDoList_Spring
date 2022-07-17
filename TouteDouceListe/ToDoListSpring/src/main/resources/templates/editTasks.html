@@ -68,7 +68,7 @@
 
 					<h5 class="mt-3">Liste des catégories</h5>
 
-					<p class="alert alert-danger" th:if="${listCategoriesSize == 0}"
+					<p class="alert alert-primary" th:if="${listCategoriesSize == 0}"
 						role="alert">Vous n'avez pas de catégorie. Dépêchez-vous d'en
 						créer une !</p>
 
@@ -121,7 +121,7 @@
 				<div class="col-8">
 					<h5 class="mt-3">Liste des tâches</h5>
 
-					<p class="alert alert-danger" th:if="${listCategoriesSize == 0}"
+					<p class="alert alert-primary" th:if="${listCategoriesSize == 0}"
 						role="alert">Vous n'avez pas de tâches. Dépêchez-vous d'en
 						créer une !</p>
 
@@ -143,10 +143,11 @@
 
 										<input type="date" class="form-control me-2"
 											th:value="${a.dateTask}" name="dateTask"
-											style="height: 58px;"> <select class="form-select"
-											name="category" style="height: 58px;">
-											<option th:each="c:${listCategories}" th:value="${c.id}"
-												th:text="${c.name}"></option>
+											style="height: 58px;"> 
+											
+										<select class="form-select" name="category" style="height: 58px;">
+											<option th:each="c:${listCategories}" th:value="${c.id}" th:text="${c.name}" 
+											th:selected="${c.name} == ${a.category.name}"></option>
 										</select>
 									</div>
 

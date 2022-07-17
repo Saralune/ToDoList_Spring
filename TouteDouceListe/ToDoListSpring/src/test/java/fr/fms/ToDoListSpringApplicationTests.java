@@ -27,14 +27,14 @@ class ToDoListSpringApplicationTests {
 		assertFalse(1 == 2);
 	}
 
-//	@Test
-//	void testAddTask() {
-//		try {
-//			business.saveOrUpdateTask(new Task(null, "TacheX", LocalDate.of(2022, 12, 31), "C'est une description de test", false, false));
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
+	@Test
+	void testAddTask() {
+		try {
+			business.saveOrUpdateTask(new Task(null, "TacheX", LocalDate.of(2022, 12, 31), "C'est une description de test", false, false));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	@Test
 	void testReadCategories() {

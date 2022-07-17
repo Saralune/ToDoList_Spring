@@ -1,12 +1,16 @@
 /*Variables CSS*/
 :root {
 	--pastelYellow: #fefae8;
-  	--pastelOrange: #f7e7de;
-  	--pastelPinkOrange: #f4dae2;
+  	--pastelOrange: rgb(255, 166, 110, 0.2);
+  	--pastelPinkOrange: #f7e7de;
   	--pastelPink: #edcee5;
+ 	--pastelLightPink: rgb(242, 166, 196, 0.4);
   	--pastelPurple: #dec3e1;
+  	--pastelLightPurple: rgb(176, 146, 196, 0.4);
   	--pastelBlue: #bbd5f2;
  	--pastelLightBlue: #d4e0f9;
+ 	--pastelLightGreen: rgb(130, 230, 206, 0.4);
+ 	--pastelGreen: rgb(130, 230, 206, 0.7);
 }
 
 /*Navbar*/
@@ -39,7 +43,7 @@ input:checked + p{
 }
 
 .btn-custom:hover{
-	background-color: blue !important;
+	background-color: var(--pastelLightBlue) !important;
 }
 
 i{
@@ -72,4 +76,59 @@ i{
 
 .pastelLightBlue{
 	color: var(--pastelLightBlue);
+}
+
+.bgPastelOrange{
+	border: none !important;
+	background-color: var(--pastelOrange) !important;
+}
+
+.bgPastelYellow{
+	border: none !important;
+	background-color: var(--pastelYellow) !important;
+}
+
+.bgPastelPinkOrange{
+	border: none !important;
+	background-color: var(--pastelPinkOrange) !important;
+}
+
+.bgPastelPink{
+	border: none !important;
+	background-color: var(--pastelPink) !important;
+}
+
+.bgPastelLightPink{
+	border: none !important;
+	background-color: var(--pastelLightPink) !important;
+}
+
+.bgPastelPurple{
+	border: none !important;
+	background-color: var(--pastelPurple) !important;
+}
+
+.bgPastelLightPurple{
+	border: none !important;
+	background-color: var(--pastelLightPurple) !important;
+}
+
+.bgPastelBlue{
+	border: none !important;
+	background-color: var(--pastelBlue) !important;
+}
+
+.bgPastelLightBlue{
+	border: none !important;
+	background-color: var(--pastelLightBlue) !important;
+}
+
+.bgPastelGreen{
+	border: none !important;
+	background-color: var(--pastelGreen) !important;
+}
+
+.bgPastelLightGreen{
+	border: none !important;
+	background-color: var(--pastelLightGreen) !important;
 }

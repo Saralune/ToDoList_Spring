@@ -37,12 +37,12 @@
 						créer une !</p>
 
 					<div class="d-flex flex-column">
-						<!--  Tasks By Category -->
 						<form class="d-flex" role="search" th:action="@{/readTasks}"
 							th:object="${category}" method="get"
-							th:each="c:${listCategories}">
+							th:each="c, iter:${listCategories}">
 							<input type="hidden" name="category" th:value="${c.id}">
-							<button class="btn btn-custom mt-3 w-100" th:text="${c.name}"
+							<button class="btn mt-3 w-100" th:text="${c.name}"								
+								th:classappend="${buttonBgColor[iter.index]}"
 								type="submit">Bouton de catégorie</button>
 						</form>
 					</div>
@@ -55,22 +55,24 @@
 						role="alert">Vous n'avez pas de tâches. Dépêchez-vous d'en
 						créer une !</p>
 
-					<div class="row mt-3 mb-5" th:each="a:${listTasks}">
+					<div class="row mt-3 mb-5" th:each="a : ${listTasks}">
 						<div class="d-flex flex-row justify-content-between">
 							<p>
 								Tâche : <span th:text="${a.nameTask}"></span>
 							</p>
-							<p class="mb-0">
+							<!-- <p class="mb-0">
 								Catégorie : <span th:text="${a.category.name}"></span>
-							</p>
+							</p> -->
 							<p>
 								Date : <span th:text="${a.dateTask}"></span>
 							</p>
 						</div>
 
-						<div class="shadow-lg p-3 mb-0 bg-body rounded w-100">
-							<!-- 									<input type="checkbox" th:checked="${a.checked}" class="me-3" />
- -->
+						<div class="shadow-lg p-3 mb-0 rounded w-100"
+							th:each="c, iter:${listCategories}"
+							th:if="${c.id == a.category.id}"
+							th:classappend="${buttonBgColor[iter.index]}">
+							<!-- <input type="checkbox" th:checked="${a.checked}" class="me-3" />  -->
 							<p th:text="${a.description}" class="mb-0"
 								th:classappend="${a.checked} ? checked"></p>
 						</div>
