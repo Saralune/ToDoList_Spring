@@ -15,7 +15,5 @@ import fr.fms.entities.Users;
  *
  */
 public interface CategoryRepository  extends JpaRepository<Category, Long> {
-
 	List<Category> findAllByUsers(Users users);
-
 }

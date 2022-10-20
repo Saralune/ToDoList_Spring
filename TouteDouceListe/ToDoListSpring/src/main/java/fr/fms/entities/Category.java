@@ -29,8 +29,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-//@SQLDelete(sql = "UPDATE category SET deleted = true WHERE id=?")
-//@Where(clause = "deleted = false")
 public class Category {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

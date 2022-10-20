@@ -48,10 +48,7 @@ public class Task {
 	@NotNull
 	@Size(min = 2, max = 100, message = "La taille doit être comprise entre 2 et 100 caractères.")
 	private String description;
-	
-//	@ManyToOne
-//	private String status;
-	
+
 	private boolean checked;
 	
 	private boolean deleted = Boolean.FALSE;

@@ -3,8 +3,6 @@
  */
 package fr.fms.web;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,10 +16,7 @@ import fr.fms.entities.Users;
  */
 @Controller
 public class UsersController {
-	
-	//TODO Voir quel login garder ??
-	
-	
+		
    @GetMapping("/login")
     public String login(Model model, Users users) {
         return "login";
@@ -51,11 +46,6 @@ public class UsersController {
 	public String error404() {
 		return "404";
 	}
-		
-	@GetMapping("/home")
-	public String home(Model model) {
-		return "demo";
-	}
 	
 	@GetMapping("/demo")
 	public String demo(Model model) {
@@ -69,11 +59,13 @@ public class UsersController {
 	}
 
 	@GetMapping("/")
-	public String accueil(HttpSession session) {
-		//TODO INDIQUER LE NB DE TACHES ????
-//		int length = business.sizeCaddy();
-//		session.setAttribute("isAuthentified", authentified);
-		return "editTasks";
+	public String accueil() {
+		return "demo";
+	}
+	
+	@GetMapping("")
+	public String localhost() {
+		return "demo";
 	}
 	
 }
