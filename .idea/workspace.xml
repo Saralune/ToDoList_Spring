@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="678a5036-96c4-483d-811c-84e9592bc360" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_8_0_27.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mariadb_jdbc_mariadb_java_client_2_7_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TouteDouceListe/ToDoListSpring/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/TouteDouceListe/ToDoListSpring/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TouteDouceListe/ToDoListSpring/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TouteDouceListe/ToDoListSpring/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TouteDouceListe/ToDoListSpring/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/TouteDouceListe/ToDoListSpring/src/main/resources/application.properties" afterDir="false" />
-    </list>
+    <list default="true" id="678a5036-96c4-483d-811c-84e9592bc360" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
