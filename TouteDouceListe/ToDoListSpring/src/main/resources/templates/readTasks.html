@@ -41,7 +41,7 @@
 							th:object="${category}" method="get"
 							th:each="c, iter:${listCategories}">
 							<input type="hidden" name="category" th:value="${c.id}">
-							<button class="btn mt-3 w-100" th:text="${c.name}"								
+							<button class="btn mt-3 w-100" th:text="${c.name}"
 								th:classappend="${buttonBgColor[iter.index]}"
 								type="submit">Bouton de catégorie</button>
 						</form>
@@ -58,7 +58,7 @@
 					<p class="alert alert-info" th:if="${listTasksByCatSize == 0 and idCat != null}"
 						role="alert">Vous n'avez pas de tâches dans cette catégorie. Dépêchez-vous d'en
 						créer une !</p>
-						
+
 
 					<div class="row mt-3 mb-5" th:each="a : ${listTasks}">
 						<div class="d-flex flex-row justify-content-between">
