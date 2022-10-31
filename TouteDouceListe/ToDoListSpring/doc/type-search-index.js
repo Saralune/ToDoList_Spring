@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"fr.fms.business","l":"IBusiness"},{"p":"fr.fms.business","l":"IBusinessImpl"}];updateSearchResults();

@@ -1,0 +1,39 @@
+<div class="container w-50">
+  <form [formGroup]="ngForm" (ngSubmit)="onLogin(ngForm)">
+    <div class="form-floating mb-3 mt-3">
+      <input
+        type="text"
+        class="form-control"
+        id="floatingInput"
+        name="username"
+        placeholder="name@example.com"
+        formControlName="username"
+      />
+      <label for="floatingInput">User name</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input
+        type="password"
+        class="form-control"
+        id="floatingPassword"
+        name="password"
+        placeholder="Password"
+        formControlName="password"
+      />
+      <label for="floatingPassword">Password</label>
+    </div>
+
+    <button
+      type="submit"
+      [disabled]="!ngForm.valid"
+      class="btn btn-primary text-align-center"
+    >
+      Submit
+    </button>
+  </form>
+
+  <div *ngIf="error" class="alert alert-danger col-md-12 mt-3">
+    Erreur de connexion.
+  </div>
+</div>
