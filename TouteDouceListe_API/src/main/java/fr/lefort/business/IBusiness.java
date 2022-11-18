@@ -1,10 +1,12 @@
 package fr.lefort.business;
 
 import fr.lefort.entities.Tasks;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public interface IBusiness<T> {
   /**
    * Method to add or update an item in database.

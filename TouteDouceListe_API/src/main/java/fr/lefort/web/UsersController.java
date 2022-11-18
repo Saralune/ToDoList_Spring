@@ -19,6 +19,7 @@ public class UsersController {
   @GetMapping("/login/{mail}")
   public Users userLogin(@PathVariable("mail") String mail) throws Exception {
     return iBusiness.getUserByMail(mail).get();
+    //return null;
   }
 
 }

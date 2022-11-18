@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -19,7 +20,7 @@ public class Tasks {
   private Long id;
 
   @NotNull
-  //@Size(min = 2, max = 20, message = "La taille doit être comprise entre 2 et 50 caractères.")
+  @Size(min = 2, max = 20, message = "La taille doit être comprise entre 2 et 50 caractères.")
   private String nameTask;
 
   @NotNull
@@ -27,7 +28,7 @@ public class Tasks {
   private Date dateTask;
 
   @NotNull
-  //@Size(min = 2, max = 100, message = "La taille doit être comprise entre 2 et 100 caractères.")
+  @Size(min = 2, max = 100, message = "La taille doit être comprise entre 2 et 100 caractères.")
   private String description;
 
   private boolean checked;
@@ -38,13 +39,13 @@ public class Tasks {
   @ManyToOne
   private Users users;
 
-  /**
-   * @param id
-   * @param nameTask
-   * @param dateTask
-   * @param description
-   * @param checked
-   * @param category
-   */
-
+/*  public Tasks(Long id, String nameTask, Date dateTask, String description, boolean checked, Category category, Users users) {
+    this.id = id;
+    this.nameTask = nameTask;
+    this.dateTask = dateTask;
+    this.description = description;
+    this.checked = checked;
+    this.category = category;
+    this.users = users;
+  }*/
 }

@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.util.Collection;
 import java.util.List;
 
@@ -20,14 +21,14 @@ public class Users {
   private Long id;
 
   @NotNull
-  //@Email
+  @Email
   private String mail;
 
   @NotNull
   private String password;
 
   @NotNull
-  private String username;
+  private String username = this.mail;
 
   @OneToMany(mappedBy = "users")
   @JsonIgnore
