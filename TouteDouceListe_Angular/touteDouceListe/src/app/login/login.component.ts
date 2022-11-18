@@ -16,11 +16,7 @@ export class LoginComponent implements OnInit {
     username: '',
     password: '',
   };
-  constructor(
-    private apiService: ApiService,
-    private router: Router,
-    private authService: AuthService
-  ) {
+  constructor(private router: Router, private authService: AuthService) {
     this.ngForm = new FormGroup({
       username: new FormControl(this.data.username),
       password: new FormControl(this.data.password),

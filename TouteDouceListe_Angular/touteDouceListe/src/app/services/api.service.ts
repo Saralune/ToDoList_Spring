@@ -40,19 +40,9 @@ export class ApiService {
     return this.http.post<any>(environment.host + '/api/auth/signin', data);
   }
 
-  // non utilisé
-  // public getUserTask(id: number) {
-  //   return this.http.get<Tasks>(environment.host + '/task' + id);
-  // }
-
   public getCategories() {
     return this.http.get<Category[]>(environment.host + '/category/all');
   }
-
-  // non utilisé
-  // public getCategory(id: number) {
-  //     return this.http.get<Category>(environment.host + "/category" + id)
-  // }
 
   public editTask(task: Tasks) {
     return this.http.post<Tasks>(environment.host + '/editTask', task, {

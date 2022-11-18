@@ -7,6 +7,7 @@ export class AuthService {
   error = null;
   ok = true;
   constructor(private apiService: ApiService) {}
+  
   // login verification
   veriFyLogin(data: any) {
     console.log('data auth service' + data);

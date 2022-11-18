@@ -61,7 +61,7 @@ export class TasksComponent implements OnInit {
   }
 
   ngDoCheck(): void {
-    //this.isAuthenticated()
+    //this.isAuthenticated();
   }
 
   ngOnInit(): void {
