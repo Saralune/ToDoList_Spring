@@ -12,6 +12,7 @@ import java.util.List;
 @Repository
 public interface TasksRepository extends JpaRepository<Tasks, Long> {
   List<Tasks> findByDescriptionContains (String description);
+  List<Tasks> findByDescriptionContainsAndUsers (String description, Users users);
   //Page<Tasks> findByDescriptionContainsAndUsers (String keyword, Pageable pageable, Users users);
 
   List<Tasks> findAll();

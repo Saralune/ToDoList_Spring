@@ -19,9 +19,7 @@ export class ApiService {
     Authorization: `Bearer ${this.token}`,
   });
 
-  constructor(private http: HttpClient) {
-    //console.log(this.headers)
-  }
+  constructor(private http: HttpClient) {}
 
   public saveTask(task: Tasks) {
     return this.http.post<Tasks>(environment.host + '/task/saveTask', task, {
@@ -29,11 +27,11 @@ export class ApiService {
     });
   }
 
-  public getUserTasks() {
-    return this.http.get<any[]>(environment.host + '/task/all', {
-      headers: this.headers,
-    });
-  }
+  // public getUserTasks() {
+  //   return this.http.get<any[]>(environment.host + '/task/all', {
+  //     headers: this.headers,
+  //   });
+  // }
 
   public getTasksByUser(idUser: number) {
     return this.http.get<any[]>(
@@ -49,8 +47,10 @@ export class ApiService {
     return this.http.post<any>(environment.host + '/api/auth/signin', data);
   }
 
-  public getCategories() {
-    return this.http.get<Category[]>(environment.host + '/category/all');
+  public getCategories(idUser: number) {
+    return this.http.get<Category[]>(
+      environment.host + '/category/' + idUser + '/all'
+    );
   }
 
   public editTask(task: Tasks) {
@@ -59,9 +59,9 @@ export class ApiService {
     });
   }
 
-  public getTasksBySearch(description: String) {
+  public getTasksBySearch(description: String, idUser: number) {
     return this.http.get<Tasks[]>(
-      environment.host + '/task/research/' + description,
+      environment.host + '/task/research/' + idUser + '/' + description,
       { headers: this.headers }
     );
   }
@@ -72,6 +72,7 @@ export class ApiService {
     });
   }
 
+  //////////////////////////////
   public getUserTasksByCatId(id: number) {
     //console.log(id);
     return this.http.get<Tasks[]>(environment.host + '/task/category/' + id, {

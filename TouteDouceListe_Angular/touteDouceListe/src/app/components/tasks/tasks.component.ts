@@ -22,8 +22,8 @@ export class TasksComponent implements OnInit {
   searchForm: FormGroup;
   myForm: FormGroup;
   newSearch = '';
-  researchTasks: Tasks[] = [];
-  name = '';
+  //researchTasks: Tasks[] = [];
+  //name = '';
   idUser = 0;
 
   // pagination
@@ -71,7 +71,7 @@ export class TasksComponent implements OnInit {
     //this.getAllTasks();
     this.getAllTasksByUser();
     this.getAllCategories();
-    this.isAuthenticated();
+    //this.isAuthenticated();
     //this.showName();
   }
 
@@ -94,7 +94,7 @@ export class TasksComponent implements OnInit {
   }
 
   getAllCategories() {
-    this.apiService.getCategories().subscribe({
+    this.apiService.getCategories(this.idUser).subscribe({
       next: (data) => (this.categories = data),
       // console.log("-------->" + data, this.categories.forEach(c => console.log(c)))
       error: (err) => (this.error = err.message),
@@ -152,22 +152,26 @@ export class TasksComponent implements OnInit {
 
   onSearch(form: FormGroup) {
     //console.log(form.value);
-    this.apiService.getTasksBySearch(form.value.newSearch).subscribe({
-      next: (data) => (
-        (this.tasks = data),
-        console.log('++++++++++' + data),
-        this.tasks.forEach((t) => console.log(t))
-      ),
-      error: (err) => (this.error = err.message),
-      complete: () => (this.error = null),
-    });
+    this.apiService
+      .getTasksBySearch(form.value.newSearch, this.idUser)
+      .subscribe({
+        next: (data) => (
+          (this.tasks = data),
+          //console.log('++++++++++' + data),
+          this.tasks.forEach((t) => console.log(t))
+        ),
+        error: (err) => (this.error = err.message),
+        complete: () => (this.error = null),
+      });
   }
 
+  //if(data.users.id == this.idUser)
+
   // token ou pas (si pas token redirect not found)
-  isAuthenticated() {
-    let rep = this.authenticateService.getToken();
-    if (rep == null) {
-      this.router.navigateByUrl('403');
-    }
-  }
+  // isAuthenticated() {
+  //   let rep = this.authenticateService.getToken();
+  //   if (rep == null) {
+  //     this.router.navigateByUrl('403');
+  //   }
+  // }
 }

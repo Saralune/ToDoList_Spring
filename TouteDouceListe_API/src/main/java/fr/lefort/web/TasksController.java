@@ -51,9 +51,11 @@ public class TasksController {
     iBusiness.saveOrUpdateOne(tasks);
   }
 
-  @GetMapping("/research/{description}")
-  public List<Tasks> getTasksBySearch(@PathVariable("description") String description) {
-    List<Tasks> tasksBySearch = iBusiness.readTasksByDescriptionContains(description);
+  @GetMapping("/research/{idUser}/{description}")
+  public List<Tasks> getTasksBySearch(@PathVariable("description") String description, @PathVariable("idUser") long id) {
+//    List<Tasks> tasksBySearch = iBusiness.readTasksByDescriptionContains(description);
+    Optional<Users> user = iUsersBusiness.readOneById(id);
+    List<Tasks> tasksBySearch = iBusiness.readTasksByDescriptionContainsAndUsers(description, user.get());
     return tasksBySearch;
   }
 

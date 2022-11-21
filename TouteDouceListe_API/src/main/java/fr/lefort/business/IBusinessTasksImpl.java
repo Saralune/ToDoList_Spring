@@ -50,6 +50,10 @@ public class IBusinessTasksImpl implements IBusiness<Tasks> {
     return tasksRepository.findByDescriptionContains(string);
   }
 
+  public List<Tasks> readTasksByDescriptionContainsAndUsers(String string, Users users){
+    return tasksRepository.findByDescriptionContainsAndUsers(string, users);
+  }
+
   public List<Tasks> readTasksByCatId(Long catId){
     return tasksRepository.findByCategoryId(catId);
   }

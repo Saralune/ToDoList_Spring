@@ -1,11 +1,10 @@
 package fr.lefort.web;
 
 import fr.lefort.business.IBusinessCategoryImpl;
+import fr.lefort.business.IBusinessUsersImpl;
 import fr.lefort.entities.Category;
-import fr.lefort.entities.Tasks;
 import fr.lefort.entities.Users;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,13 +18,15 @@ public class CategoryController {
   @Autowired
   private IBusinessCategoryImpl iBusiness;
 
-  @GetMapping("/all")
-  public List<Category> allCategories(){
-    System.out.println("okkkkkk");
-    return iBusiness.findAll();
-  }
+  @Autowired
+  private IBusinessUsersImpl iUsersBusiness;
 
-  //TODO utiliser allcatbyuser quand je récupère user
+  @GetMapping("/{id}/all")
+  public List<Category> allCategories(@PathVariable("id") long idUser) throws Exception {
+    Optional<Users> user = iUsersBusiness.readOneById(idUser);
+    if(user.isPresent()) return iBusiness.findAllCatByUser(user.get());
+    return null;
+  }
 
   @GetMapping("/{id}")
   public Category getCategory(@PathVariable("id") long id) throws Exception {
