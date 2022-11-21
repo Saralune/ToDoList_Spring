@@ -35,6 +35,15 @@ export class ApiService {
     });
   }
 
+  public getTasksByUser(idUser: number) {
+    return this.http.get<any[]>(
+      environment.host + '/task/allTasksByUser/' + idUser,
+      {
+        headers: this.headers,
+      }
+    );
+  }
+
   public login(data: any) {
     // console.log(data)
     return this.http.post<any>(environment.host + '/api/auth/signin', data);

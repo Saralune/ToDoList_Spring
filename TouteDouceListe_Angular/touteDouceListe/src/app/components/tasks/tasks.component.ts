@@ -24,6 +24,8 @@ export class TasksComponent implements OnInit {
   newSearch = '';
   researchTasks: Tasks[] = [];
   name = '';
+  idUser = 0;
+
   // pagination
   pages: number = 1;
 
@@ -58,6 +60,7 @@ export class TasksComponent implements OnInit {
     this.searchForm = new FormGroup({
       newSearch: new FormControl(this.newSearch),
     });
+    this.idUser = authenticateService.getUserFromStorage().id;
   }
 
   ngDoCheck(): void {
@@ -65,14 +68,24 @@ export class TasksComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllTasks();
+    //this.getAllTasks();
+    this.getAllTasksByUser();
     this.getAllCategories();
     this.isAuthenticated();
     //this.showName();
   }
 
-  getAllTasks() {
-    this.apiService.getUserTasks().subscribe({
+  // getAllTasks() {
+  //   this.apiService.getUserTasks().subscribe({
+  //     next: (data) => (this.tasks = data),
+  //     //console.log("-------->" + data), this.tasks.forEach(t => console.log(t))
+  //     error: (err) => (this.error = err.message),
+  //     complete: () => (this.error = null),
+  //   });
+  // }
+
+  getAllTasksByUser() {
+    this.apiService.getTasksByUser(this.idUser).subscribe({
       next: (data) => (this.tasks = data),
       //console.log("-------->" + data), this.tasks.forEach(t => console.log(t))
       error: (err) => (this.error = err.message),
@@ -131,7 +144,8 @@ export class TasksComponent implements OnInit {
       this.apiService.delTask(task).subscribe({
         //next: (data) => console.log(data),
         error: (err) => (this.error = err.message),
-        complete: () => this.getAllTasks(),
+        //complete: () => this.getAllTasks(),
+        complete: () => this.getAllTasksByUser(),
       });
     }
   }

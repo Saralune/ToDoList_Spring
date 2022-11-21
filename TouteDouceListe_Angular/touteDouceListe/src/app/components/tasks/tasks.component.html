@@ -28,7 +28,7 @@
           class="btn btn-custom bgPastelPink mt-3 w-100"
           type="button"
           value="Input"
-          (click)="getAllTasks()"
+          (click)="getAllTasksByUser()"
         >
           Toutes les catégories
         </button>
@@ -54,7 +54,8 @@
             let t of tasks | paginate: { itemsPerPage: 10, currentPage: pages }
           "
         >
-          <div *ngIf="t.users.username === name">
+          <!-- *ngIf="t.users.username === name" -->
+          <div>
             <div class="d-flex flex-row justify-content-between">
               <p>{{ t.nameTask }}</p>
               <p class="mb-0">Catégorie : {{ t.category.name }}</p>

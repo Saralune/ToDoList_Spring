@@ -38,10 +38,12 @@ export class LoginComponent implements OnInit {
       console.log('login component ' + ok);
       if (ok) {
         setTimeout(() => {
+          console.log('this error ok : ' + this.error);
           this.error = false;
           this.router.navigateByUrl('tasks');
         }, 1500);
       } else {
+        console.log('this error ' + this.error);
         this.error = true;
       }
     }

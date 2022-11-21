@@ -1,9 +1,12 @@
 package fr.lefort.business;
 
 import fr.lefort.dao.TasksRepository;
+import fr.lefort.entities.Category;
 import fr.lefort.entities.Tasks;
 import fr.lefort.entities.Users;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,6 +31,15 @@ public class IBusinessTasksImpl implements IBusiness<Tasks> {
   public List findAll() {
     return tasksRepository.findAllByUsers(new Users());
   }
+
+  public List<Tasks> findAllTasksByUser(Users user) {
+    return tasksRepository.findAllByUsers(user);
+  }
+
+
+//  public Page<Tasks> readByDescriptionContains(String keyword, int page, int tasksByPage, Users users) throws Exception {
+//    return tasksRepository.findByDescriptionContainsAndUsers(keyword, PageRequest.of(page, tasksByPage), users);
+//  }
 
   @Override
   public Optional<Tasks> readOneById(Long id) {
