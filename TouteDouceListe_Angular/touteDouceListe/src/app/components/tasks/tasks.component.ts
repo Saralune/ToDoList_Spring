@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Category } from 'src/app/models/category.model';
@@ -11,25 +11,23 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.scss'],
 })
-export class TasksComponent implements OnInit {
+export class TasksComponent implements OnInit, DoCheck {
   categories: Category[] = [];
   tasks: Tasks[] = [];
   category: Category | undefined;
   task!: Tasks;
+  pastelsColors!: string[];
   error = null;
   modalAction = '';
 
   searchForm: FormGroup;
   myForm: FormGroup;
   newSearch = '';
-  //researchTasks: Tasks[] = [];
-  //name = '';
-  idUser = 0;
+  idUser = -1;
 
-  // pagination
   pages: number = 1;
 
-  //modal add article
+  //modal
   displayStyle = 'none';
   displayBlur = 'blur(0)';
   display = false;
@@ -61,11 +59,10 @@ export class TasksComponent implements OnInit {
       newSearch: new FormControl(this.newSearch),
     });
     this.idUser = authenticateService.getUserFromStorage().id;
+    this.buttonBgColor();
   }
 
-  ngDoCheck(): void {
-    //this.isAuthenticated();
-  }
+  ngDoCheck(): void {}
 
   ngOnInit(): void {
     //this.getAllTasks();
@@ -96,15 +93,12 @@ export class TasksComponent implements OnInit {
   getAllCategories() {
     this.apiService.getCategories(this.idUser).subscribe({
       next: (data) => (this.categories = data),
-      // console.log("-------->" + data, this.categories.forEach(c => console.log(c)))
       error: (err) => (this.error = err.message),
       complete: () => (this.error = null),
     });
   }
 
   getTasksByCategory(catId: number) {
-    //console.log("clic");
-
     this.apiService.getUserTasksByCatId(catId).subscribe({
       next: (data) => (this.tasks = data),
       error: (err) => (this.error = err.message),
@@ -135,11 +129,7 @@ export class TasksComponent implements OnInit {
     location.reload();
   }
 
-  getTargetTask() {
-    return this.task;
-  }
-
-  delTask(task: Tasks) {
+  deleteTask(task: Tasks) {
     if (confirm('Vous êtes sur de vouloir supprimer cette tache?')) {
       this.apiService.delTask(task).subscribe({
         //next: (data) => console.log(data),
@@ -151,7 +141,6 @@ export class TasksComponent implements OnInit {
   }
 
   onSearch(form: FormGroup) {
-    //console.log(form.value);
     this.apiService
       .getTasksBySearch(form.value.newSearch, this.idUser)
       .subscribe({
@@ -163,6 +152,22 @@ export class TasksComponent implements OnInit {
         error: (err) => (this.error = err.message),
         complete: () => (this.error = null),
       });
+  }
+
+  buttonBgColor(): string[] {
+    this.pastelsColors = [
+      //'bgPastelPinkOrange',
+      'bgPastelOrange',
+      'bgPastelLightPink',
+      'bgPastelPink',
+      'bgPastelPurple',
+      'bgPastelLightPurple',
+      'bgPastelLightBlue',
+      'bgPastelBlue',
+      'bgPastelGreen',
+      'bgPastelLightGreen',
+    ];
+    return this.pastelsColors;
   }
 
   //if(data.users.id == this.idUser)
