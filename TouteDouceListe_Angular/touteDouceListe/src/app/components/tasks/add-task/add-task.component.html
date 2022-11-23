@@ -1,1 +1,58 @@
-<p>add-task works!</p>
+<div class="login-container animated fadeInDown bootstrap snippets bootdeys">
+  <div class="loginbox bg-white">
+    <form [formGroup]="myForm" (ngSubmit)="onAddTask(myForm)">
+      <div class="form-group mb-3">
+        <label class="control-label">Nom de la tâche : </label>
+        <input
+          type="text"
+          formControlName="nameTask"
+          class="form-control"
+          required
+        />
+      </div>
+
+      <div class="form-group mb-3">
+        <label class="control-label">Date de la tâche : </label>
+        <input
+          type="date"
+          formControlName="dateTask"
+          class="form-control"
+          required
+        />
+      </div>
+
+      <div class="form-group mb-3">
+        <label class="control-label">Description de la tâche : </label>
+        <input
+          type="text"
+          formControlName="description"
+          class="form-control"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label class="control-label" for="formCategory">Categorie : </label>
+        <select
+          id="formCategory"
+          class="form-control"
+          formControlName="category"
+          required
+        >
+          <option *ngFor="let c of categories" [ngValue]="c">
+            {{ c.name }}
+          </option>
+        </select>
+      </div>
+      <div class="text-center">
+        <button
+          type="submit"
+          [disabled]="!myForm.valid"
+          class="btn bgPastelLightGreen mt-3"
+        >
+          Ajouter la tâche
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

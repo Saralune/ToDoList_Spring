@@ -24,6 +24,7 @@ export class TasksComponent implements OnInit, DoCheck {
   myForm: FormGroup;
   newSearch = '';
   idUser = -1;
+  indexOfCategory = -1;
 
   pages: number = 1;
 
@@ -129,6 +130,10 @@ export class TasksComponent implements OnInit, DoCheck {
     location.reload();
   }
 
+  getTargetTask() {
+    return this.task;
+  }
+
   deleteTask(task: Tasks) {
     if (confirm('Vous êtes sur de vouloir supprimer cette tache?')) {
       this.apiService.delTask(task).subscribe({
@@ -168,6 +173,15 @@ export class TasksComponent implements OnInit, DoCheck {
       'bgPastelLightGreen',
     ];
     return this.pastelsColors;
+  }
+
+  getIndexOfCategory(name: string): number {
+    for (let i = 0; i < this.categories.length; i++) {
+      if (name == this.categories[i].name) {
+        return i;
+      }
+    }
+    return -1;
   }
 
   //if(data.users.id == this.idUser)
