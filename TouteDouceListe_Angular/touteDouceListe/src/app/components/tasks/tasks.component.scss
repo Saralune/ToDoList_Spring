@@ -1,3 +1,19 @@
 #modalSize {
   margin-top: 3.75rem !important;
 }
+
+.taskDisplayed:hover {
+  .x-edit,
+  .x-del {
+    display: inline;
+  }
+}
+
+.taskDisplayed {
+  min-height: 90px;
+}
+
+.x-edit,
+.x-del {
+  display: none;
+}

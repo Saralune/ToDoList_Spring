@@ -34,8 +34,8 @@
         <h5 class="mt-3">Liste des catégories</h5>
         <button type="button" class="btn bgPastelPinkOrange">
           <!-- (click)="createPopup()" -->
-          <!-- + -->
-          <img class="x-edit" src="/assets/img/edit.png" alt="edit" />
+          +
+          <!-- <img class="x-edit" src="/assets/img/edit.png" alt="edit" /> -->
         </button>
       </div>
 
@@ -85,19 +85,18 @@
 
         <div
           *ngFor="
-            let t of tasks | paginate: { itemsPerPage: 10, currentPage: pages }
+            let t of tasks | paginate: { itemsPerPage: 5, currentPage: pages }
           "
         >
           <div class="d-flex flex-row justify-content-between">
             <p>{{ t.nameTask | titlecase }}</p>
-            <p class="mb-0">Catégorie : {{ t.category.name | titlecase }}</p>
+            <!-- <p class="mb-0">Catégorie : {{ t.category.name | titlecase }}</p> -->
             <p>Date : {{ t.dateTask | date: "dd.MM.YYYY" }}</p>
           </div>
           <div
             [ngClass]="pastelsColors[getIndexOfCategory(t.category.name)]"
-            class="d-flex flex-row shadow-lg p-3 mb-0 rounded w-100 mb-5 justify-content-between"
+            class="d-flex flex-row shadow-lg p-4 mb-0 rounded w-100 mb-5 justify-content-between taskDisplayed"
           >
-            <!-- [ngClass]="pastelsColors[]" -->
             <div class="d-flex flex-row align-items-center">
               <p [ngClass]="t.checked ? 'checked mb-0' : 'mb-0'">
                 {{ t.description }}
@@ -106,14 +105,14 @@
             <div>
               <a
                 ><img
-                  class="x-edit"
+                  class="x-edit editBtn"
                   src="/assets/img/edit.png"
                   alt="edit"
                   (click)="editPopup(t)"
               /></a>
               <a
                 ><img
-                  class="x-del"
+                  class="x-del delBtn"
                   src="/assets/img/x-button.png"
                   alt="delete"
                   (click)="deleteTask(t)"

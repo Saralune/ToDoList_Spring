@@ -72,16 +72,29 @@ export class AddTaskComponent implements OnInit {
     this.newTask.category = form.value.category;
     this.newTask.users = this.authService.getUserFromStorage();
 
-    console.log(typeof this.authService.getUserFromStorage());
-    console.log(this.authService.getUserFromStorage());
-    console.log(this.newTask);
+    // console.log(typeof this.authService.getUserFromStorage());
+    // console.log(this.authService.getUserFromStorage());
+    // console.log(this.newTask);
 
-    if (confirm("Valider l'ajout de la tache ?")) {
-      this.apiService.saveTask(this.newTask).subscribe({
-        next: (data) => console.log('data ' + data),
-        error: (err) => (this.error = err.message),
-        complete: () => (this.error = null),
-      });
+    console.log('taille descr : ' + this.newTask.description.length);
+    console.log('taille nom : ' + this.newTask.nameTask.length);
+
+    if (this.newTask.description.length > 100) {
+      alert(
+        'La taille de la description doit être inférieure à 100 caractères, merci de recommencer.'
+      );
+    } else if (this.newTask.nameTask.length > 20) {
+      alert(
+        'La taille du nom doit être inférieure à 20 caractères, merci de recommencer.'
+      );
+    } else {
+      if (confirm("Valider l'ajout de la tâche ?")) {
+        this.apiService.saveTask(this.newTask).subscribe({
+          next: (data) => console.log('data ' + data),
+          error: (err) => (this.error = err.message),
+          complete: () => (this.error = null),
+        });
+      }
     }
 
     this.userTasks.closePopup();

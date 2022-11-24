@@ -28,7 +28,7 @@
   margin: 5px;
 }
 .x-del:hover {
-  background-color: red;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 /* edition */
 .x-edit {
@@ -36,8 +36,7 @@
   margin: 5px;
 }
 .x-edit:hover {
-  border-radius: 100%;
-  background-color: black;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
 /* modal create */
