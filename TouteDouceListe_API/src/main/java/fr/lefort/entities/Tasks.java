@@ -2,6 +2,7 @@ package fr.lefort.entities;
 
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -31,9 +32,10 @@ public class Tasks {
   @Size(min = 2, max = 100, message = "La taille doit être comprise entre 2 et 100 caractères.")
   private String description;
 
+  @NotNull
   private boolean checked;
 
-  @ManyToOne
+  @ManyToOne(cascade = {CascadeType.ALL})
   private Category category;
 
   @ManyToOne

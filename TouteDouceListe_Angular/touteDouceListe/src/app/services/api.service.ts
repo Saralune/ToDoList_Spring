@@ -27,6 +27,16 @@ export class ApiService {
     });
   }
 
+  public saveCategory(category: Category) {
+    return this.http.post<Category>(
+      environment.host + '/category/save',
+      category,
+      {
+        headers: this.headers,
+      }
+    );
+  }
+
   // public getUserTasks() {
   //   return this.http.get<any[]>(environment.host + '/task/all', {
   //     headers: this.headers,

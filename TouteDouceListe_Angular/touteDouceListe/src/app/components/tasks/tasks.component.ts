@@ -66,21 +66,9 @@ export class TasksComponent implements OnInit, DoCheck {
   ngDoCheck(): void {}
 
   ngOnInit(): void {
-    //this.getAllTasks();
     this.getAllTasksByUser();
     this.getAllCategories();
-    //this.isAuthenticated();
-    //this.showName();
   }
-
-  // getAllTasks() {
-  //   this.apiService.getUserTasks().subscribe({
-  //     next: (data) => (this.tasks = data),
-  //     //console.log("-------->" + data), this.tasks.forEach(t => console.log(t))
-  //     error: (err) => (this.error = err.message),
-  //     complete: () => (this.error = null),
-  //   });
-  // }
 
   getAllTasksByUser() {
     this.apiService.getTasksByUser(this.idUser).subscribe({
@@ -121,6 +109,12 @@ export class TasksComponent implements OnInit, DoCheck {
     this.task = t;
   }
 
+  openCategories() {
+    this.modalAction = 'CAT';
+    this.displayStyle = 'block';
+    this.displayBlur = 'blur(4px)';
+  }
+
   closePopup() {
     this.displayStyle = 'none';
     this.displayBlur = 'blur(0)';
@@ -139,7 +133,6 @@ export class TasksComponent implements OnInit, DoCheck {
       this.apiService.delTask(task).subscribe({
         //next: (data) => console.log(data),
         error: (err) => (this.error = err.message),
-        //complete: () => this.getAllTasks(),
         complete: () => this.getAllTasksByUser(),
       });
     }
@@ -161,7 +154,7 @@ export class TasksComponent implements OnInit, DoCheck {
 
   buttonBgColor(): string[] {
     this.pastelsColors = [
-      //'bgPastelPinkOrange',
+      'bgPastelPinkOrange',
       'bgPastelOrange',
       'bgPastelLightPink',
       'bgPastelPink',
@@ -183,14 +176,4 @@ export class TasksComponent implements OnInit, DoCheck {
     }
     return -1;
   }
-
-  //if(data.users.id == this.idUser)
-
-  // token ou pas (si pas token redirect not found)
-  // isAuthenticated() {
-  //   let rep = this.authenticateService.getToken();
-  //   if (rep == null) {
-  //     this.router.navigateByUrl('403');
-  //   }
-  // }
 }

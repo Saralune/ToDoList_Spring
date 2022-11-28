@@ -32,8 +32,11 @@
     <div class="d-flex flex-column col-4">
       <div class="d-flex flex-row justify-content-between">
         <h5 class="mt-3">Liste des catégories</h5>
-        <button type="button" class="btn bgPastelPinkOrange">
-          <!-- (click)="createPopup()" -->
+        <button
+          type="button"
+          class="btn bgPastelPinkOrange"
+          (click)="openCategories()"
+        >
           +
           <!-- <img class="x-edit" src="/assets/img/edit.png" alt="edit" /> -->
         </button>
@@ -153,10 +156,14 @@
         <h4 *ngIf="modalAction == 'E'" class="modal-title" id="myModalLabel">
           Modifier une tâche
         </h4>
+        <h4 *ngIf="modalAction == 'CAT'" class="modal-title" id="myModalLabel">
+          Gérer mes catégories
+        </h4>
       </div>
       <div class="modal-body">
         <app-add-task *ngIf="modalAction == 'C'"></app-add-task>
         <app-edit-task *ngIf="modalAction == 'E'"></app-edit-task>
+        <app-category *ngIf="modalAction == 'CAT'"></app-category>
       </div>
     </div>
   </div>

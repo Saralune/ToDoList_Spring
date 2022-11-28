@@ -28,7 +28,6 @@ export class AddTaskComponent implements OnInit {
     dateTask: new Date(),
     description: '',
     checked: false,
-    // deleted: false,
     category: {} as Category,
     users: {} as Users,
   };
@@ -44,23 +43,13 @@ export class AddTaskComponent implements OnInit {
       dateTask: new FormControl(this.newTask.dateTask),
       description: new FormControl(this.newTask.description),
       checked: new FormControl(false),
-      // deleted: new FormControl(this.newTask.deleted),
       category: new FormControl(this.newTask.category),
-      //users: new FormControl(this.newTask.user)
     });
     this.idUser = authService.getUserFromStorage().id;
   }
 
   ngOnInit(): void {
-    this.getAllCategories();
-  }
-
-  getAllCategories() {
-    this.apiService.getCategories(this.idUser).subscribe({
-      next: (data) => (this.categories = data),
-      error: (err) => (this.error = err.message),
-      complete: () => (this.error = null),
-    });
+    this.userTasks.getAllCategories();
   }
 
   onAddTask(form: FormGroup): void {
@@ -68,25 +57,13 @@ export class AddTaskComponent implements OnInit {
     this.newTask.dateTask = form.value.dateTask;
     this.newTask.description = form.value.description;
     this.newTask.checked = false;
-    // this.newTask.deleted = false;
     this.newTask.category = form.value.category;
     this.newTask.users = this.authService.getUserFromStorage();
 
-    // console.log(typeof this.authService.getUserFromStorage());
-    // console.log(this.authService.getUserFromStorage());
-    // console.log(this.newTask);
-
-    console.log('taille descr : ' + this.newTask.description.length);
-    console.log('taille nom : ' + this.newTask.nameTask.length);
-
-    if (this.newTask.description.length > 100) {
-      alert(
-        'La taille de la description doit être inférieure à 100 caractères, merci de recommencer.'
-      );
-    } else if (this.newTask.nameTask.length > 20) {
-      alert(
-        'La taille du nom doit être inférieure à 20 caractères, merci de recommencer.'
-      );
+    if (this.newTask.description.length > 255) {
+      alert('La description est trop longue, merci de recommencer.');
+    } else if (this.newTask.nameTask.length > 30) {
+      alert('Le nom est trop long, merci de recommencer.');
     } else {
       if (confirm("Valider l'ajout de la tâche ?")) {
         this.apiService.saveTask(this.newTask).subscribe({
@@ -95,8 +72,7 @@ export class AddTaskComponent implements OnInit {
           complete: () => (this.error = null),
         });
       }
+      this.userTasks.closePopup();
     }
-
-    this.userTasks.closePopup();
   }
 }

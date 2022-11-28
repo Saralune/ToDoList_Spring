@@ -1,0 +1,129 @@
+<div class="login-container animated fadeInDown bootstrap snippets bootdeys">
+  <div class="loginbox bg-white">
+    <div *ngFor="let c of categories">
+      <form [formGroup]="myForm" (ngSubmit)="onEditCategory(myForm)">
+        <div class="form-group mb-3 d-flex flex-row align-items-center">
+          <input
+            type="text"
+            formControlName="name"
+            class="form-control me-2"
+            [value]="c.name"
+            required
+          />
+          <button
+            type="submit"
+            [disabled]="!myForm.valid"
+            class="btn bgPastelLightGreen me-2"
+          >
+            Modifier
+          </button>
+          <button
+            type="button"
+            class="btn bgPastelLightRed"
+            (click)="onDeleteCategory(c)"
+          >
+            Supprimer
+          </button>
+        </div>
+      </form>
+
+      <!--  <a
+                ><img
+                  class="x-del delBtn"
+                  src="/assets/img/x-button.png"
+                  alt="delete"
+                  (click)="deleteTask(t)"
+              /></a> -->
+
+      <div *ngIf="">
+        <p class="alert alert-warning" role="alert">
+          Attention, vous ne pouvez pas supprimer une catégorie liée à une
+          tâche.
+        </p>
+      </div>
+    </div>
+
+    <div *ngIf="categories.length < 10">
+      <h5>Ajouter une catégorie</h5>
+
+      <form [formGroup]="myForm" (ngSubmit)="onAddCategory(myForm)">
+        <div class="d-flex flex-row align-items-center">
+          <input
+            type="text"
+            formControlName="name"
+            class="form-control me-2"
+            required
+          />
+          <button
+            type="submit"
+            [disabled]="!myForm.valid"
+            class="btn bgPastelLightGreen"
+          >
+            Ajouter
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div *ngIf="categories.length >= 10">
+      <p class="alert alert-primary" role="alert">
+        Vous ne pouvez pas ajouter plus de 10 catégories.
+      </p>
+    </div>
+
+    <!-- <form [formGroup]="myForm" (ngSubmit)="onAddTask(myForm)">
+      <div class="form-group mb-3">
+        <label class="control-label">Nom de la tâche : </label>
+        <input
+          type="text"
+          formControlName="nameTask"
+          class="form-control"
+          required
+        />
+      </div>
+
+      <div class="form-group mb-3">
+        <label class="control-label">Date de la tâche : </label>
+        <input
+          type="date"
+          formControlName="dateTask"
+          class="form-control"
+          required
+        />
+      </div>
+
+      <div class="form-group mb-3">
+        <label class="control-label">Description de la tâche : </label>
+        <input
+          type="text"
+          formControlName="description"
+          class="form-control"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label class="control-label" for="formCategory">Categorie : </label>
+        <select
+          id="formCategory"
+          class="form-control"
+          formControlName="category"
+          required
+        >
+          <option *ngFor="let c of categories" [ngValue]="c">
+            {{ c.name }}
+          </option>
+        </select>
+      </div>
+      <div class="text-center">
+        <button
+          type="submit"
+          [disabled]="!myForm.valid"
+          class="btn bgPastelLightGreen mt-3"
+        >
+          Ajouter la tâche
+        </button>
+      </div>
+    </form> -->
+  </div>
+</div>

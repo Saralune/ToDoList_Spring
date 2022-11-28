@@ -41,14 +41,8 @@ public class CategoryController {
   }
   @PostMapping("/save")
   public void saveCategory(@RequestBody Category category) throws Exception {
-    try {
-      //ajout de l'user avant sauvegarde
-      System.out.println("saved cat");
-      iBusiness.saveOrUpdateOne(category);
-
-    } catch (Exception e){
-      System.out.println(e.getMessage());
-    }
+    if(category.getName().length() > 20) throw new Exception("Le nom est trop long.");
+    iBusiness.saveOrUpdateOne(category);
   }
 
   @DeleteMapping("/deleteCategory/{id}")

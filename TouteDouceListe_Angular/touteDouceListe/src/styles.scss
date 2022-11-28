@@ -47,8 +47,8 @@
 /*Variables CSS*/
 :root {
   --pastelYellow: #fefae8;
-  --pastelOrange: rgb(255, 166, 110, 0.2);
-  --pastelPinkOrange: #f7e7de;
+  --pastelOrange: rgba(250, 197, 164, 0.2);
+  --pastelPinkOrange: hsla(33, 75%, 83%, 0.4);
   --pastelPink: #edcee5;
   --pastelLightPink: rgb(242, 166, 196, 0.4);
   --pastelPurple: #dec3e1;
@@ -57,6 +57,7 @@
   --pastelLightBlue: #d4e0f9;
   --pastelLightGreen: rgb(130, 230, 206, 0.4);
   --pastelGreen: rgb(130, 230, 206, 0.7);
+  --pastelLightRed: rgba(239, 182, 182, 0.7);
 }
 
 /*Navbar*/
@@ -180,6 +181,11 @@ i {
 .bgPastelLightGreen {
   border: none !important;
   background-color: var(--pastelLightGreen) !important;
+}
+
+.bgPastelLightRed {
+  border: none !important;
+  background-color: var(--pastelLightRed) !important;
 }
 
 /*Pagination*/
